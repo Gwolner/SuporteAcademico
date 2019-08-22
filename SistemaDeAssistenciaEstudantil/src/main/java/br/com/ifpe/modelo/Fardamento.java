@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.modelo;
 
-/**
- *
- * @author Wolf
- */
+
 public class Fardamento {
     
+    private long idFardamento;
+    private String tamanhoPedido;
+    private String tamanhoEntregue;
+    private int quantidadeEntregue;
+    private long idAluno;
+    private long idSituacao;
+    private long idTamanho;
 }

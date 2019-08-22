@@ -5,7 +5,6 @@
     <!--Nome do provedor/implementação JPA-->
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--Entidade mapeada-->
-    <class>br.com.ifpe.modelo.Tarefa</class>
     <properties>
       <!--Dados da conexão-->
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_sae"/>

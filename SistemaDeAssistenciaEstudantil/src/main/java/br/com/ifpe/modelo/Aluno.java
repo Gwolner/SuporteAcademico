@@ -1,14 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.modelo;
 
-/**
- *
- * @author Wolf
- */
+//@Entity
 public class Aluno {
+    
+    //@id
+    //@GeneratedValue(strategy)
+    private long idAluno;
+    private String nomeAluno;
+    private String curso;
+    private String turno;
+    private String matricula;
+    private long cpf;
+    private long celular;
+    private String email;
+    //@Transient
+    private String referencia;
+
     
 }
