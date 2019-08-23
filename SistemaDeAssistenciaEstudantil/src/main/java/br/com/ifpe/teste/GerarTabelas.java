@@ -1,27 +1,16 @@
-/*
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Tarefa;
+import br.com.ifpe.modelo.Aluno;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-
 public class GerarTabelas {
-    public static void main(String[] args) {
-//        EntityManagerFactory factory = Persistence.
-//            createEntityManagerFactory("tarefas");
-//        
-//        EntityManager em = factory.createEntityManager();
-//        
-//
-//        
-//        factory.close();
-//    }
-
-    Tarefa trf = new Tarefa();
-        preencherTarefa(trf);
+    
+    public static void main(String[] args) {      
+        Aluno aluno = new Aluno();
+        preencherObjeto(aluno);
         EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
@@ -31,7 +20,7 @@ public class GerarTabelas {
             em = emf.createEntityManager(); //Criação do EntityManager.
             et = em.getTransaction(); //Recupera objeto responsável pelo gerenciamento de transação.
             et.begin();
-            em.persist(trf);
+            em.persist(aluno);
             et.commit();
         } catch (Exception ex) {
             if (et != null)
@@ -44,11 +33,16 @@ public class GerarTabelas {
         }
     }
 
-    private static void preencherTarefa(Tarefa trf) {
-        trf.setDescricao("Teste JPA");
-        trf.setFinalizado(true);
+    private static void preencherObjeto(Aluno aluno) {
+        aluno.setNomeAluno("Guilherme");
+//        aluno.setCpf(95606795);
+//        aluno.setCelular(95606795);
+//        aluno.setCurso("TADS");
+//        aluno.setEmail("gwdm@a.com");
+//        aluno.setMatricula("20172y6-rc0000");
+//        aluno.setTurno("Noite");
+//        aluno.setReferencia("Olá");
     }
 
 
 }
-*/
