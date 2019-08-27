@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
 import br.com.ifpe.modelo.Aluno;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,9 +20,7 @@ import org.junit.Test;
  * @author nicolas
  */
 public class AlunoTest {
-
     private static EntityManagerFactory emf;
-    private static final Logger logger = Logger.getGlobal();
     private EntityManager em;
 
     public AlunoTest() {
@@ -66,8 +58,7 @@ public class AlunoTest {
     public void atualizarAluno() {
         String nomeAluno = "Herbert Leonardo";
         String curso = "TADS";
-        int numero = 98765432;
-        
+        int numero = 98765432;        
         Long id = 1L;
         Aluno aluno = em.find(Aluno.class, id);
         aluno.setNomeAluno(nomeAluno);
@@ -87,22 +78,16 @@ public class AlunoTest {
         String novoNomeAluno = "Herbert Leonardo 2";
         String novoCurso = "ADS (2)";
         int novoNumero = 9999999;        
-        Long id = 1L;
-        
-        Aluno aluno = em.find(Aluno.class, id);        
-        
+        Long id = 1L;        
+        Aluno aluno = em.find(Aluno.class, id);  
         aluno.setNomeAluno(novoNomeAluno);
         aluno.setCurso(novoCurso);
         aluno.setCelular(novoNumero);
-        
         em.clear();
         em.merge(aluno);
         Map<String, Object> properties = new HashMap<>();
-        
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        
         aluno = em.find(Aluno.class, id, properties);
-        
         assertEquals(novoNomeAluno, aluno.getNomeAluno());
         assertEquals(novoCurso, aluno.getCurso());
     }

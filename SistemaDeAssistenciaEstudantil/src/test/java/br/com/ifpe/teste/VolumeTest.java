@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Tamanho;
 import br.com.ifpe.modelo.Volume;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,18 +76,13 @@ public class VolumeTest {
     public void atualizarVolumeMerge() {
         String novoVolume = "Vol. 3 - Rev. 2";   
         Long id = 1L;        
-        Volume volume = em.find(Volume.class, id);        
-
+        Volume volume = em.find(Volume.class, id);    
         volume.setDescricaoVolume(novoVolume);
-        
         em.clear();
         em.merge(volume);
         Map<String, Object> properties = new HashMap<>();
-        
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        
         volume = em.find(Volume.class, id, properties);
-        
         assertEquals(novoVolume, volume.getDescricaoVolume());
     }
     

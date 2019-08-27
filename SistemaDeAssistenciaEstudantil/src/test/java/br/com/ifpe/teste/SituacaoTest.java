@@ -1,10 +1,8 @@
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Fardamento;
 import br.com.ifpe.modelo.Situacao;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,14 +20,10 @@ import static org.junit.Assert.*;
  * @author nicolas
  */
 public class SituacaoTest {
-    //Acredito que não seria necessário criar uma tabela pra situação
-    //Talvez simplesmente guardar um int que referencie um enum no Java
-    //já sirva.
     public SituacaoTest() {
     }
     
     private static EntityManagerFactory emf;
-    private static final Logger logger = Logger.getGlobal();
     private EntityManager em;
     
     @BeforeClass
@@ -54,10 +48,8 @@ public class SituacaoTest {
 
     @Test
     public void persistirSituacao() {
-        //Esse teste não vai passar, todos os campos estão com nullable=false
         Situacao situacao = new Situacao();       
-        situacao.setDescricaoSituacao("Novo");
-        
+        situacao.setDescricaoSituacao("Novo");        
         em.persist(situacao);
         em.flush();
         assertNotNull(situacao.getDescricaoSituacao());
@@ -66,8 +58,7 @@ public class SituacaoTest {
     @Test
     public void atualizarSituacao() {
         String novoEstado = "Em estoque";        
-        Long id = 1L;
-        
+        Long id = 1L;        
         Situacao situacao = em.find(Situacao.class, id);
         situacao.setDescricaoSituacao(novoEstado);
         em.flush();
@@ -82,20 +73,14 @@ public class SituacaoTest {
     @Test
     public void atualizarSituacaoMerge() {
         String novoAutor = "Pronto para emprestar";  
-        Long id = 1L;
-        
-        Situacao situacao = em.find(Situacao.class, id);        
-
+        Long id = 1L;        
+        Situacao situacao = em.find(Situacao.class, id);    
         situacao.setDescricaoSituacao(novoAutor);
-        
         em.clear();
         em.merge(situacao);
-        Map<String, Object> properties = new HashMap<>();
-        
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        
-        situacao = em.find(Situacao.class, id, properties);
-        
+        Map<String, Object> properties = new HashMap<>();        
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);        
+        situacao = em.find(Situacao.class, id, properties);        
         assertEquals(novoAutor, situacao.getDescricaoSituacao());
     }
     

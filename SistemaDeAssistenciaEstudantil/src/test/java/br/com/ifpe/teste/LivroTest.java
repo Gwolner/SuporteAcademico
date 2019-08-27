@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Livro;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +22,6 @@ import org.junit.Test;
 public class LivroTest {
 
     private static EntityManagerFactory emf;
-    private static final Logger logger = Logger.getGlobal();
     private EntityManager em;
 
     public LivroTest() {
@@ -83,20 +75,14 @@ public class LivroTest {
     @Test
     public void atualizarLivroMerge() {
         String novoAutor = "Paul and Harvey Deitel";  
-        Long id = 1L;
-        
-        Livro livro = em.find(Livro.class, id);        
-
+        Long id = 1L;        
+        Livro livro = em.find(Livro.class, id);     
         livro.setAutor(novoAutor);
-        
         em.clear();
         em.merge(livro);
         Map<String, Object> properties = new HashMap<>();
-        
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        
         livro = em.find(Livro.class, id, properties);
-        
         assertEquals(novoAutor, livro.getAutor());
     }
     

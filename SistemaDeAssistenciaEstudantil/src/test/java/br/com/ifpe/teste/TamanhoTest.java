@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
 import br.com.ifpe.modelo.Tamanho;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,8 +60,7 @@ public class TamanhoTest {
     @Test
     public void atualizarTamanho() {
         String novoTamanho = "Medio";        
-        Long id = 1L;
-        
+        Long id = 1L;        
         Tamanho tamanho = em.find(Tamanho.class, id);
         tamanho.setDescricaoTamanho(novoTamanho);
         em.flush();
@@ -82,20 +75,14 @@ public class TamanhoTest {
     @Test
     public void atualizarTamanhoMerge() {
         String novoAutor = "Pronto para emprestar";  
-        Long id = 1L;
-        
+        Long id = 1L;        
         Tamanho tamanho = em.find(Tamanho.class, id);        
-
-        tamanho.setDescricaoTamanho(novoAutor);
-        
+        tamanho.setDescricaoTamanho(novoAutor);        
         em.clear();
         em.merge(tamanho);
-        Map<String, Object> properties = new HashMap<>();
-        
+        Map<String, Object> properties = new HashMap<>();        
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        
-        tamanho = em.find(Tamanho.class, id, properties);
-        
+        tamanho = em.find(Tamanho.class, id, properties);        
         assertEquals(novoAutor, tamanho.getDescricaoTamanho());
     }
     
