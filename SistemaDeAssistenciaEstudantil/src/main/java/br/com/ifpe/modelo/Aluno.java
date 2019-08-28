@@ -1,11 +1,15 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -40,6 +44,8 @@ public class Aluno implements Serializable{
     @Transient //Campo que não será persistido. Apenas exibido na interface
     private String referencia; 
 
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno")
+    protected List<Fardamento> fardamento;
     
     public long getIdAluno() {
         return idAluno;
@@ -113,5 +119,12 @@ public class Aluno implements Serializable{
         this.referencia = referencia;
     }
 
-    
+    public List<Fardamento> getFardamento() {
+        return fardamento;
+    }
+
+    public void setFardamento(List<Fardamento> fardamento) {
+        this.fardamento = fardamento;
+    }
+ 
 }

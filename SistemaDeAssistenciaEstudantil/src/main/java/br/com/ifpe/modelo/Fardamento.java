@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Fardamento implements Serializable {
@@ -33,6 +35,8 @@ public class Fardamento implements Serializable {
     @Column(name="id_tamanho", nullable = false)
     private long idTamanho; //Confirmar se após a cardinalidade esse campo é necessário
 
+    @ManyToOne 
+    protected Aluno aluno;
     
     public long getIdFardamento() {
         return idFardamento;
@@ -88,6 +92,14 @@ public class Fardamento implements Serializable {
 
     public void setIdTamanho(long idTamanho) {
         this.idTamanho = idTamanho;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
 

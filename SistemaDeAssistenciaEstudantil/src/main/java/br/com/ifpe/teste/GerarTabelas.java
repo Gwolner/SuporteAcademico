@@ -7,6 +7,8 @@ import br.com.ifpe.modelo.Livro;
 import br.com.ifpe.modelo.Situacao;
 import br.com.ifpe.modelo.Tamanho;
 import br.com.ifpe.modelo.Volume;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -20,16 +22,19 @@ public class GerarTabelas {
         Aluno aluno = new Aluno();
         Emprestimo emprestimo = new Emprestimo();
         Fardamento fardamento = new Fardamento();
+        List <Fardamento> fardamentos = new ArrayList();
         Livro livro = new Livro();
         Situacao situacao = new Situacao();
         Tamanho tamanho = new Tamanho();
         Volume volume = new Volume();
         
         //Populando Entidades
-        preencherAluno(aluno);
+        preencherAluno(aluno, fardamentos);
 //        preencherEmprestimo(emprestimo);
         preencherFardamento(fardamento);
         preencherLivro(livro);
+        aluno.setFardamento(fardamentos);
+        fardamento.setAluno(aluno);
 //        preencherSituacao(situacao);
 //        preencherTamnho(tamanho);
 //        preencherVolume(volume);
@@ -66,7 +71,7 @@ public class GerarTabelas {
         }
     }
 
-    private static void preencherAluno(Aluno aluno) {
+    private static void preencherAluno(Aluno aluno, List <Fardamento> f) {
         aluno.setNomeAluno("Guilherme");
         aluno.setCpf(95606795);
         aluno.setCelular(95606795);
