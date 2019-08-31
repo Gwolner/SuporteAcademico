@@ -1,15 +1,21 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
 
 @Entity
+@Table(name="tb_fardamento")
+@Access(AccessType.FIELD)
 public class Fardamento implements Serializable {
     
     @Id
@@ -26,17 +32,19 @@ public class Fardamento implements Serializable {
     @Column(name="quantidade_entregue", nullable = false, length = 2)
     private int quantidadeEntregue;
     
-    @Column(name="id_aluno", nullable = false)
-    private long idAluno; //Confirmar se após a cardinalidade esse campo é necessário
     
-    @Column(name="id_situacao", nullable = false) 
-    private long idSituacao; //Confirmar se após a cardinalidade esse campo é necessário
-    
-    @Column(name="id_tamanho", nullable = false)
-    private long idTamanho; //Confirmar se após a cardinalidade esse campo é necessário
-
-    @ManyToOne 
+    //Cardinalidade Aluno 1 : N Fardamento 
+    @ManyToOne
     protected Aluno aluno;
+    
+    //Cardinalidade Situacao 1 : N Fardamento 
+    @ManyToOne 
+    protected Situacao situacao;
+    
+    //Cardinalidade Tamanho 1 : N Fardamento 
+    @ManyToOne 
+    protected Tamanho tamanho;
+
     
     public long getIdFardamento() {
         return idFardamento;
@@ -70,30 +78,6 @@ public class Fardamento implements Serializable {
         this.quantidadeEntregue = quantidadeEntregue;
     }
 
-    public long getIdAluno() {
-        return idAluno;
-    }
-
-    public void setIdAluno(long idAluno) {
-        this.idAluno = idAluno;
-    }
-
-    public long getIdSituacao() {
-        return idSituacao;
-    }
-
-    public void setIdSituacao(long idSituacao) {
-        this.idSituacao = idSituacao;
-    }
-
-    public long getIdTamanho() {
-        return idTamanho;
-    }
-
-    public void setIdTamanho(long idTamanho) {
-        this.idTamanho = idTamanho;
-    }
-
     public Aluno getAluno() {
         return aluno;
     }
@@ -102,5 +86,21 @@ public class Fardamento implements Serializable {
         this.aluno = aluno;
     }
 
+    public Situacao getSituacao() {
+        return situacao;
+    }
 
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
+
+    public Tamanho getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(Tamanho tamanho) {
+        this.tamanho = tamanho;
+    }
+    
+    
 }

@@ -2,14 +2,20 @@ package br.com.ifpe.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
+@Table(name="tb_emprestimo")
+@Access(AccessType.FIELD)
 public class Emprestimo implements Serializable {
     
     @Id
@@ -18,21 +24,24 @@ public class Emprestimo implements Serializable {
     private long idEmprestimo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name="data_entrega", nullable = false)
+    @Column(name="data_entrega", nullable = true)
     private Date dataEntrega;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name="data_devolucao", nullable = false)
+    @Column(name="data_devolucao", nullable = true)
     private Date dataDevolucao;
     
-    @Column(nullable = false, length = 20)
+    @Column(name="status", nullable = false, length = 20)
     private String status;
     
-    @Column(name="id_livro", nullable = false)
-    private long idLivro; //Confirmar se após a cardinalidade esse campo é necessário
     
-    @Column(name="id_aluno", nullable = false)
-    private long idAluno; //Confirmar se após a cardinalidade esse campo é necessário
+    //Cardinalidade Aluno 1 : N Emprestimo
+    @ManyToOne 
+    protected Aluno aluno;
+    
+    //Cardinalidade Livro 1 : N Emprestimo
+    @ManyToOne 
+    protected Livro livro;
 
     
     public long getIdEmprestimo() {
@@ -67,20 +76,19 @@ public class Emprestimo implements Serializable {
         this.status = status;
     }
 
-    public long getIdLivro() {
-        return idLivro;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setIdLivro(long idLivro) {
-        this.idLivro = idLivro;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public long getIdAluno() {
-        return idAluno;
+    public Livro getLivro() {
+        return livro;
     }
 
-    public void setIdAluno(long idAluno) {
-        this.idAluno = idAluno;
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
-    
 }

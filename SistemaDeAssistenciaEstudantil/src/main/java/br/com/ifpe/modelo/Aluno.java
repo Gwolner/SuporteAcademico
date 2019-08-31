@@ -2,17 +2,21 @@ package br.com.ifpe.modelo;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name="tb_aluno")
+@Access(AccessType.FIELD)
 public class Aluno implements Serializable{
     
     @Id
@@ -23,29 +27,36 @@ public class Aluno implements Serializable{
     @Column(name="nome_aluno", nullable = false, length = 100)
     private String nomeAluno;
     
-    @Column(nullable = false, length = 150)
+    @Column(name="curso", nullable = false, length = 150)
     private String curso;
     
-    @Column(nullable = false, length = 10)
+    @Column(name="turno", nullable = false, length = 10)
     private String turno;
     
-    @Column(nullable = false, length = 15)
+    @Column(name="matricula", nullable = false, length = 15)
     private String matricula;
     
-    @Column(nullable = false, length = 15)
+    @Column(name="cpf", nullable = false, length = 15)
     private int cpf;
     
-    @Column(nullable = false, length = 11)
+    @Column(name="celular", nullable = false, length = 11)
     private int celular;
     
-    @Column(nullable = false, length = 70)
+    @Column(name="email", nullable = false, length = 70)
     private String email;
     
     @Transient //Campo que não será persistido. Apenas exibido na interface
     private String referencia; 
 
+    
+    //Cardinalidade Aluno 1 : N Fardamento
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno")
     protected List<Fardamento> fardamento;
+    
+    //Cardinalidade Aluno 1 : N Emprestimo
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno")
+    protected List<Emprestimo> emprestimo;
+    
     
     public long getIdAluno() {
         return idAluno;
@@ -87,7 +98,7 @@ public class Aluno implements Serializable{
         this.matricula = matricula;
     }
 
-    public long getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
@@ -95,7 +106,7 @@ public class Aluno implements Serializable{
         this.cpf = cpf;
     }
 
-    public long getCelular() {
+    public int getCelular() {
         return celular;
     }
 
@@ -118,7 +129,7 @@ public class Aluno implements Serializable{
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-
+   
     public List<Fardamento> getFardamento() {
         return fardamento;
     }
@@ -126,5 +137,13 @@ public class Aluno implements Serializable{
     public void setFardamento(List<Fardamento> fardamento) {
         this.fardamento = fardamento;
     }
- 
+
+    public List<Emprestimo> getEmprestimo() {
+        return emprestimo;
+    }
+
+    public void setEmprestimo(List<Emprestimo> emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+   
 }
