@@ -97,6 +97,6 @@ public class AlunoTest {
     public void removerAluno() {
         Aluno aluno = em.find(Aluno.class, 9L);
         em.remove(aluno);
-        assertNull(aluno);
+        assertNull(em.find(Aluno.class, 9L));
     }
 }
