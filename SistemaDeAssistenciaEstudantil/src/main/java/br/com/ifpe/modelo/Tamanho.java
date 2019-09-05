@@ -7,6 +7,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,8 @@ public class Tamanho implements Serializable {
     
     
     //Cardinalidade Tamanho 1 : N Fardamento
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "tamanho")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "tamanho", 
+            fetch = FetchType.LAZY)
     protected List<Fardamento> fardamento;
     
     
@@ -48,12 +50,12 @@ public class Tamanho implements Serializable {
         this.descricaoTamanho = descricaoTamanho;
     }
 
-//    public List<Fardamento> getFardamento() {
-//        return fardamento;
-//    }
-//
-//    public void setFardamento(List<Fardamento> fardamento) {
-//        this.fardamento = fardamento;
-//    }
+    public List<Fardamento> getFardamento() {
+        return fardamento;
+    }
+
+    public void setFardamento(List<Fardamento> fardamento) {
+        this.fardamento = fardamento;
+    }
     
 }

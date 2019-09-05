@@ -7,6 +7,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,11 +51,13 @@ public class Aluno implements Serializable{
 
     
     //Cardinalidade Aluno 1 : N Fardamento
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno",
+            fetch = FetchType.LAZY)
     protected List<Fardamento> fardamento;
     
     //Cardinalidade Aluno 1 : N Emprestimo
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno",
+            fetch = FetchType.LAZY)
     protected List<Emprestimo> emprestimo;
     
     

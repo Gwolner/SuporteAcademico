@@ -7,6 +7,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,8 @@ public class Situacao implements Serializable {
     
     
     //Cardinalidade Situacao 1 : N Fardamento
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "situacao")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "situacao",
+            fetch = FetchType.LAZY)
     protected List<Fardamento> fardamento;
     
     

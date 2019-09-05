@@ -6,9 +6,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,11 +38,13 @@ public class Emprestimo implements Serializable {
     
     
     //Cardinalidade Aluno 1 : N Emprestimo
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno") 
     protected Aluno aluno;
     
     //Cardinalidade Livro 1 : N Emprestimo
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_livro", referencedColumnName = "id_livro") 
     protected Livro livro;
 
     

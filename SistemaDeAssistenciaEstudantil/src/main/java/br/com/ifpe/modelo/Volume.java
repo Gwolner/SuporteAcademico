@@ -7,6 +7,7 @@ import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,8 @@ public class Volume implements Serializable {
     
     
     //Cardinalidade Volume 1 : N Livro
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "volume")
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "volume", 
+            fetch = FetchType.LAZY)
     protected List<Livro> livro;
     
     
@@ -48,12 +50,12 @@ public class Volume implements Serializable {
         this.descricaoVolume = descricaoVolume;
     }
 
-//    public List<Livro> getLivro() {
-//        return livro;
-//    }
-//
-//    public void setLivro(List<Livro> livro) {
-//        this.livro = livro;
-//    }
-//    
+    public List<Livro> getLivro() {
+        return livro;
+    }
+
+    public void setLivro(List<Livro> livro) {
+        this.livro = livro;
+    }
+    
 }

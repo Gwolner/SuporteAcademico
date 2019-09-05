@@ -5,9 +5,11 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,15 +36,18 @@ public class Fardamento implements Serializable {
     
     
     //Cardinalidade Aluno 1 : N Fardamento 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno")
     protected Aluno aluno;
     
     //Cardinalidade Situacao 1 : N Fardamento 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_situacao", referencedColumnName = "id_situacao")
     protected Situacao situacao;
     
     //Cardinalidade Tamanho 1 : N Fardamento 
-    @ManyToOne 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_tamanho", referencedColumnName = "id_tamanho") 
     protected Tamanho tamanho;
 
     
