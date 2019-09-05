@@ -61,11 +61,12 @@ public class EmprestimoTest {
     public void persistirEmprestimo() {
         //AQUI ASSOCIA-SE O ID DE GUILHERME COM O PRIMEIRO LIVRO INSERIDO
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.setIdLivro(1L);
-        emprestimo.setIdAluno(1L);
+        Aluno a = new Aluno();
+        emprestimo.setAluno(a);
+        //emprestimo.setIdAluno(1L);
         em.persist(emprestimo);
         em.flush();
-        assertNotNull(emprestimo.getIdLivro());
+        assertNotNull(a.getIdAluno());
     }
     
     @Test
@@ -80,14 +81,14 @@ public class EmprestimoTest {
         //A ideia é buscar o emprestimo do primeiro aluno, e mudar o id desse 
         //emprestimo pro id do aluno criado agora.
         Emprestimo emprestimo = em.find(Emprestimo.class, id);
-        emprestimo.setIdAluno(aluno.getIdAluno());
+        emprestimo.setAluno(aluno);
         em.flush();
         String jpql = "SELECT c FROM Emprestimo c WHERE c.idAluno = ?1";
         TypedQuery<Emprestimo> query = em.createQuery(jpql, Emprestimo.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter(1, id);
         emprestimo = query.getSingleResult();
-        assertEquals(aluno.getIdAluno(), emprestimo.getIdAluno());      
+        assertEquals(aluno.getIdAluno(), emprestimo.getAluno().getIdAluno());      
     }
     
     @Test
@@ -99,7 +100,7 @@ public class EmprestimoTest {
         
         Emprestimo emprestimo = em.find(Emprestimo.class, id);        
 
-        emprestimo.setIdAluno(aluno.getIdAluno());
+        emprestimo.setAluno(aluno);
         
         em.clear();
         em.merge(emprestimo);
@@ -109,7 +110,7 @@ public class EmprestimoTest {
         
         emprestimo = em.find(Emprestimo.class, id, properties);
         
-        assertEquals(emprestimo.getIdAluno(), aluno.getIdAluno());
+        assertEquals(emprestimo.getAluno().getIdAluno(), aluno.getIdAluno());
     }
     
     @Test

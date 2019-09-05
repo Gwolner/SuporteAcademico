@@ -12,7 +12,7 @@
     <class>br.com.ifpe.modelo.Fardamento</class>
     <class>br.com.ifpe.modelo.Livro</class>
     <class>br.com.ifpe.modelo.Situacao</class>
-    <class>br.com.ifpe.modelo.Tamanho</class>
+    <class>br.com.ifpe.modelo.Emprestimo</class>
     <class>br.com.ifpe.modelo.Volume</class>
     
     <properties>
@@ -20,7 +20,7 @@
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_sae"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="wolner"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
       
       <!--Dados do EclipseLink-->
       <property name="eclipselink.logging.level" value="FINE"/>

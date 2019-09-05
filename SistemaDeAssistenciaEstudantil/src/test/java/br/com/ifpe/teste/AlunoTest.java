@@ -49,6 +49,7 @@ public class AlunoTest {
     @Test
     public void persistirAluno() {
         Aluno aluno = new Aluno();
+        
         em.persist(aluno);
         em.flush();
         assertNotNull(aluno.getIdAluno());

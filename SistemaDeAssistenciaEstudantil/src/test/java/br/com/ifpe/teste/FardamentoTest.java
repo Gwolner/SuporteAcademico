@@ -7,6 +7,7 @@ package br.com.ifpe.teste;
 
 import br.com.ifpe.modelo.Fardamento;
 import br.com.ifpe.modelo.Livro;
+import br.com.ifpe.modelo.Tamanho;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -58,12 +59,14 @@ public class FardamentoTest {
     @Test
     public void persistirFardamento() {
         //Esse teste não vai passar, todos os campos estão com nullable=false
-        Fardamento fardamento = new Fardamento();       
-        fardamento.setIdTamanho(1L);
+        Fardamento fardamento = new Fardamento(); 
+        Tamanho tam = new Tamanho();
+        tam.setIdTamanho(0);
+        fardamento.setTamanho(tam);
         
         em.persist(fardamento);
         em.flush();
-        assertNotNull(fardamento.getIdTamanho());
+        assertNotNull(fardamento.getTamanho().getIdTamanho());
     }
     
     @Test
