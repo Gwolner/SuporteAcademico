@@ -1,13 +1,24 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="tb_livro")
+@Access(AccessType.FIELD)
 public class Livro implements Serializable {
     
     @Id
@@ -15,23 +26,31 @@ public class Livro implements Serializable {
     @Column(name="id_livro")
     private long idLivro;
     
-    @Column(nullable = false, length = 45)
+    @Column(name="materia", nullable = false, length = 45)
     private String materia;
     
-    @Column (nullable = false, length = 150)
+    @Column (name="titulo", nullable = false, length = 150)
     private String titulo;
     
-    @Column(nullable = false, length = 100)
+    @Column(name="autor", nullable = false, length = 100)
     private String autor;
     
-    @Column(nullable = false, length = 100)
+    @Column(name="isbn", nullable = false, length = 100)
     private long isbn;
     
-    @Column(nullable = false, length = 5)
+    @Column(name="quantidade",nullable = false, length = 5)
     private int quantidade;
     
-    @Column(name="id_volume", nullable = false)
-    private long idVolume; //Confirmar se após a cardinalidade esse campo é necessário
+    
+    //Cardinalidade Livro 1 : N Emprestimo
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "livro", 
+            fetch = FetchType.LAZY)
+    protected List<Emprestimo> emprestimo;
+
+    //Cardinalidade Volume 1 : N Livro
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_volume", referencedColumnName = "id_volume")
+    protected Volume volume;
 
     
     public long getIdLivro() {
@@ -82,11 +101,19 @@ public class Livro implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public long getIdVolume() {
-        return idVolume;
+    public List<Emprestimo> getEmprestimo() {
+        return emprestimo;
     }
 
-    public void setIdVolume(long idVolume) {
-        this.idVolume = idVolume;
+    public void setEmprestimo(List<Emprestimo> emprestimo) {
+        this.emprestimo = emprestimo;
+    }
+
+    public Volume getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Volume volume) {
+        this.volume = volume;
     }
 }

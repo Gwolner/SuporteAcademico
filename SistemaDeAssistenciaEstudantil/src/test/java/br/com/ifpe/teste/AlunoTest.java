@@ -49,6 +49,7 @@ public class AlunoTest {
     @Test
     public void persistirAluno() {
         Aluno aluno = new Aluno();
+        
         em.persist(aluno);
         em.flush();
         assertNotNull(aluno.getIdAluno());
@@ -96,6 +97,6 @@ public class AlunoTest {
     public void removerAluno() {
         Aluno aluno = em.find(Aluno.class, 9L);
         em.remove(aluno);
-        assertNull(aluno);
+        assertNull(em.find(Aluno.class, 9L));
     }
 }

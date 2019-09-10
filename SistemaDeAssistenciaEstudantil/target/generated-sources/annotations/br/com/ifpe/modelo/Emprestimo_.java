@@ -1,18 +1,20 @@
 package br.com.ifpe.modelo;
 
+import br.com.ifpe.modelo.Aluno;
+import br.com.ifpe.modelo.Livro;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-25T18:36:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-09-04T19:50:46")
 @StaticMetamodel(Emprestimo.class)
 public class Emprestimo_ { 
 
+    public static volatile SingularAttribute<Emprestimo, Aluno> aluno;
     public static volatile SingularAttribute<Emprestimo, Long> idEmprestimo;
+    public static volatile SingularAttribute<Emprestimo, Livro> livro;
     public static volatile SingularAttribute<Emprestimo, Date> dataEntrega;
-    public static volatile SingularAttribute<Emprestimo, Long> idLivro;
-    public static volatile SingularAttribute<Emprestimo, Long> idAluno;
     public static volatile SingularAttribute<Emprestimo, Date> dataDevolucao;
     public static volatile SingularAttribute<Emprestimo, String> status;
 

@@ -1,13 +1,16 @@
 package br.com.ifpe.modelo;
 
+import br.com.ifpe.modelo.Livro;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-08-25T18:36:05")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-09-04T19:50:46")
 @StaticMetamodel(Volume.class)
 public class Volume_ { 
 
+    public static volatile ListAttribute<Volume, Livro> livro;
     public static volatile SingularAttribute<Volume, String> descricaoVolume;
     public static volatile SingularAttribute<Volume, Long> idVolume;
 
