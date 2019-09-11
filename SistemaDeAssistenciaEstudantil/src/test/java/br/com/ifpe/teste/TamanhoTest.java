@@ -1,11 +1,13 @@
 package br.com.ifpe.teste;
 
+import br.com.ifpe.modelo.Situacao;
 import br.com.ifpe.modelo.Tamanho;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import org.junit.After;
@@ -20,13 +22,10 @@ import static org.junit.Assert.*;
  * @author nicolas
  */
 public class TamanhoTest {
-    
     private static EntityManagerFactory emf;
     private EntityManager em;
-    
-    public TamanhoTest() {
-    }
-        
+    private static EntityTransaction et;
+
     @BeforeClass
     public static void setUpClass() {
         emf = Persistence.createEntityManagerFactory("tarefas");
@@ -39,57 +38,88 @@ public class TamanhoTest {
 
     @Before
     public void setUp() {
-        em = emf.createEntityManager();
+        em = emf.createEntityManager();        
+        et = em.getTransaction();
+        et.begin();
+        
+        inserirTamanhoTesteRemove();
     }
 
     @After
     public void tearDown() {
+        try {
+            et.commit();
+        } catch (Exception ex) {
+            System.out.println("ERRO!");
+        }
         em.close();
+    }
+
+    public void inserirTamanhoTesteRemove() {
+        Tamanho tamanho = new Tamanho();      
+        Long id = 9L;
+
+        tamanho.setDescricaoTamanho("XG");
+        tamanho.setIdTamanho(id);
+
+        em.persist(tamanho);
+        em.flush();
     }
     
     @Test
     public void persistirTamanho() {
-        //Esse teste não vai passar, todos os campos estão com nullable=false
-        Tamanho tamanho = new Tamanho();       
-        tamanho.setDescricaoTamanho("Pequeno");
+        Tamanho tamanho = new Tamanho();      
+        Long id = 1L;
+
+        tamanho.setDescricaoTamanho("P");
+        tamanho.setIdTamanho(id);
+
         em.persist(tamanho);
         em.flush();
-        assertNotNull(tamanho.getDescricaoTamanho());
+        assertNotNull(em.find(Tamanho.class, id));
     }
     
     @Test
     public void atualizarTamanho() {
-        String novoTamanho = "Medio";        
+        String novoTamanho = "M";        
         Long id = 1L;        
+
         Tamanho tamanho = em.find(Tamanho.class, id);
         tamanho.setDescricaoTamanho(novoTamanho);
+
         em.flush();
-        String jpql = "SELECT c FROM Tamanho c WHERE c.descricaoTamanho = ?1";
+        String jpql = "SELECT c FROM Tamanho c WHERE c.idTamanho = ?1";
         TypedQuery<Tamanho> query = em.createQuery(jpql, Tamanho.class);
+
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter(1, id);
+
         tamanho = query.getSingleResult();
         assertEquals(novoTamanho, tamanho.getDescricaoTamanho());  
     }
     
     @Test
     public void atualizarTamanhoMerge() {
-        String novoAutor = "Pronto para emprestar";  
+        String novoTamanho = "PP";  
         Long id = 1L;        
+
         Tamanho tamanho = em.find(Tamanho.class, id);        
-        tamanho.setDescricaoTamanho(novoAutor);        
+        tamanho.setDescricaoTamanho(novoTamanho);   
+
         em.clear();
         em.merge(tamanho);
+
         Map<String, Object> properties = new HashMap<>();        
         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+
         tamanho = em.find(Tamanho.class, id, properties);        
-        assertEquals(novoAutor, tamanho.getDescricaoTamanho());
+        assertEquals(novoTamanho, tamanho.getDescricaoTamanho());
     }
     
     @Test
     public void removerTamanho() {
-        Tamanho tamanho = em.find(Tamanho.class, 1L);
+        Tamanho tamanho = em.find(Tamanho.class, 9L);
         em.remove(tamanho);
-        assertNull(tamanho);
+        assertNull(em.find(Tamanho.class, 9L));
     }
 }

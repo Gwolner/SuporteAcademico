@@ -1,11 +1,13 @@
 package br.com.ifpe.teste;
 
+import br.com.ifpe.modelo.Livro;
 import br.com.ifpe.modelo.Situacao;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import org.junit.After;
@@ -20,12 +22,10 @@ import static org.junit.Assert.*;
  * @author nicolas
  */
 public class SituacaoTest {
-    public SituacaoTest() {
-    }
-    
     private static EntityManagerFactory emf;
     private EntityManager em;
-    
+    private static EntityTransaction et;
+
     @BeforeClass
     public static void setUpClass() {
         emf = Persistence.createEntityManagerFactory("tarefas");
@@ -38,21 +38,41 @@ public class SituacaoTest {
 
     @Before
     public void setUp() {
-        em = emf.createEntityManager();
+        em = emf.createEntityManager();        
+        et = em.getTransaction();
+        et.begin();
+        
+        inserirSituacaoTesteRemove();
     }
 
     @After
     public void tearDown() {
+        try {
+            et.commit();
+        } catch (Exception ex) {
+            System.out.println("ERRO!");
+        }
         em.close();
     }
 
-    @Test
-    public void persistirSituacao() {
+    public void inserirSituacaoTesteRemove() {
+        Long idTemp = 9L;
         Situacao situacao = new Situacao();       
-        situacao.setDescricaoSituacao("Novo");        
+        situacao.setDescricaoSituacao("Rasgou");
+        situacao.setIdSituacao(idTemp);
         em.persist(situacao);
         em.flush();
-        assertNotNull(situacao.getDescricaoSituacao());
+    }
+    
+    @Test
+    public void persistirSituacao() {
+        Long idTemp = 1L;
+        Situacao situacao = new Situacao();       
+        situacao.setDescricaoSituacao("Novo");
+        situacao.setIdSituacao(idTemp);
+        em.persist(situacao);
+        em.flush();
+        assertNotNull(em.find(Situacao.class, idTemp));
     }
     
     @Test
@@ -62,7 +82,7 @@ public class SituacaoTest {
         Situacao situacao = em.find(Situacao.class, id);
         situacao.setDescricaoSituacao(novoEstado);
         em.flush();
-        String jpql = "SELECT c FROM Situacao c WHERE c.idDescricaoSituacao = ?1";
+        String jpql = "SELECT c FROM Situacao c WHERE c.idSituacao = ?1";
         TypedQuery<Situacao> query = em.createQuery(jpql, Situacao.class);
         query.setHint("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
         query.setParameter(1, id);
@@ -86,8 +106,8 @@ public class SituacaoTest {
     
     @Test
     public void removerSituacao() {
-        Situacao situacao = em.find(Situacao.class, 1L);
+        Situacao situacao = em.find(Situacao.class, 9L);
         em.remove(situacao);
-        assertNull(situacao);
+        assertNull(em.find(Situacao.class, 9L));
     }
 }

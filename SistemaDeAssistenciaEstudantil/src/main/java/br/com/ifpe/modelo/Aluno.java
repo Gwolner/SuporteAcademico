@@ -38,7 +38,7 @@ public class Aluno implements Serializable{
     private String matricula;
     
     @Column(name="cpf", nullable = false, length = 15)
-    private int cpf;
+    private long cpf;
     
     @Column(name="celular", nullable = false, length = 11)
     private int celular;
@@ -101,11 +101,11 @@ public class Aluno implements Serializable{
         this.matricula = matricula;
     }
 
-    public int getCpf() {
+    public long getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(long cpf) {
         this.cpf = cpf;
     }
 
