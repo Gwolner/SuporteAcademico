@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
 import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Emprestimo;
-import br.com.ifpe.modelo.Fardamento;
-import br.com.ifpe.modelo.Livro;
-import br.com.ifpe.modelo.Volume;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
@@ -28,10 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author nicolas
- */
+
 public class EmprestimoTest {
 
     private static EntityManagerFactory emf;
@@ -176,70 +163,9 @@ public class EmprestimoTest {
         emprestimo.setStatus(statusEmprestimo);        
         emprestimo.setDataEntrega(entrega.getTime());
         emprestimo.setDataDevolucao(devolucao.getTime());
-        //emprestimo.setAluno(criarAluno());
-        //emprestimo.setLivro(criarLivro());
 
         em.persist(emprestimo);
         em.flush();
     }
-    
-    private Aluno criarAluno(){
-        
-        String nomeAluno = "Miguel Nicolas";
-        String curso = "ADS";
-        int numero = 123222;
-        String turno = "Noite";    
-        String matricula = "2111ii-iiiii";
-        long cpf = 112233L;
-        String email = "nicolas@sefaz.com";
 
-        List<Emprestimo> emprestimo = new ArrayList<Emprestimo>();
-        List<Fardamento> fardamento = new ArrayList<Fardamento>();
-        
-        Aluno aluno = new Aluno();
-        aluno.setIdAluno(1L);
-        aluno.setNomeAluno(nomeAluno);
-        aluno.setCurso(curso);
-        aluno.setCelular(numero);
-        aluno.setTurno(turno);
-        aluno.setMatricula(matricula);
-        aluno.setCpf(cpf);
-        aluno.setEmail(email);
-        aluno.setEmprestimo(emprestimo);
-        aluno.setFardamento(fardamento);
-        aluno.setReferencia("2019-5p!");
-        
-        em.persist(aluno);
-        em.flush();
-        
-        return aluno;
-    }
-    
-    private Livro criarLivro(){
-        
-        String materia = "LPOO";
-        String titulo = "Java: Como Programar";
-        String autor = "Harvey Deitel";
-        long isbn = 666123123;
-        int quantidade = 10;
-        Long id = 1L;
-        List<Emprestimo> emprestimo = new ArrayList<Emprestimo>();
-        Volume volume = new Volume();
-        
-        
-        Livro livro = new Livro();
-        livro.setAutor(autor);
-        livro.setIdLivro(id);
-        livro.setIsbn(isbn);
-        livro.setMateria(materia);
-        livro.setQuantidade(quantidade);
-        livro.setTitulo(titulo);
-        livro.setEmprestimo(emprestimo);
-        livro.setVolume(volume);
-        
-        em.persist(livro);
-        em.flush();
-        
-        return livro;
-    }
 }

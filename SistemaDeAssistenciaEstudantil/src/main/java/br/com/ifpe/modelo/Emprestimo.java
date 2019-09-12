@@ -95,4 +95,5 @@ public class Emprestimo implements Serializable {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+    
 }

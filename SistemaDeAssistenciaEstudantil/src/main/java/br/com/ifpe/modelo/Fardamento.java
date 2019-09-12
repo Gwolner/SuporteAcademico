@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name="tb_fardamento")
 @Access(AccessType.FIELD)
@@ -106,6 +104,5 @@ public class Fardamento implements Serializable {
     public void setTamanho(Tamanho tamanho) {
         this.tamanho = tamanho;
     }
-    
     
 }

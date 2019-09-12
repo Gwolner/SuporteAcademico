@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Fardamento;
-import br.com.ifpe.modelo.Livro;
-import br.com.ifpe.modelo.Situacao;
 import br.com.ifpe.modelo.Tamanho;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,17 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/*
-        Fardamento
-            Precisa de:
-                * tamahhoPedido
-                * tamanhoEntregue
-                * quantidadeEntregue
-                * Aluno
-                * Situacao
-                * Tamanho
-            
-*/
+
 public class FardamentoTest {
 
     private static EntityManagerFactory emf;
@@ -74,40 +55,11 @@ public class FardamentoTest {
     }
     @Test
     public void persistirFardamento() {
-        //ALUNO
-        String nomeAluno = "James Gosling";
-        String curso = "Java";
-        int numero = 98765432;        
-        String turno = "Integral"; 
-        String matricula = "java_0001";
-        int cpf = 00000077777;
-        String email = "jg@oracle.com";
 
-        Aluno aluno = new Aluno();
-        aluno.setNomeAluno(nomeAluno);
-        aluno.setCurso(curso);
-        aluno.setCelular(numero);
-        aluno.setTurno(turno);
-        aluno.setMatricula(matricula);
-        aluno.setCpf(cpf);
-        aluno.setEmail(email);
-
-        //SITUACAO
-        Situacao situacao = new Situacao();       
-        situacao.setDescricaoSituacao("Ok");
-
-        //TAMANHO
-        Tamanho tamanho = new Tamanho();     
-        tamanho.setDescricaoTamanho("M");
-
-        // -- FARDAMENTO EM SI --
         Fardamento fardamento = new Fardamento(); 
         fardamento.setTamanhoPedido("M");
         fardamento.setTamanhoEntregue("P");
         fardamento.setQuantidadeEntregue(2);
-        //fardamento.setAluno(aluno);
-        //fardamento.setSituacao(situacao);
-        //fardamento.setTamanho(tamanho);
 
         em.persist(fardamento);
         em.flush();
@@ -162,40 +114,11 @@ public class FardamentoTest {
 
     private void inserirFardamentoTesteRemove() {
         
-        String nomeAluno = "Ken Thompson";
-        String curso = "C";
-        int numero = 99900000;        
-        String turno = "Integral"; 
-        String matricula = "clang_0001";
-        int cpf = 00000077777;
-        String email = "kt@clang.com";
-
-        Aluno aluno = new Aluno();
-        aluno.setNomeAluno(nomeAluno);
-        aluno.setCurso(curso);
-        aluno.setCelular(numero);
-        aluno.setTurno(turno);
-        aluno.setMatricula(matricula);
-        aluno.setCpf(cpf);
-        aluno.setEmail(email);
-
-        //SITUACAO
-        Situacao situacao = new Situacao();       
-        situacao.setDescricaoSituacao("OKAY");
-
-        //TAMANHO
-        Tamanho tamanho = new Tamanho();     
-        tamanho.setDescricaoTamanho("G");
-
-        // -- FARDAMENTO EM SI --
         Fardamento fardamento = new Fardamento();
         fardamento.setIdFardamento(9L);
         fardamento.setTamanhoPedido("G");
         fardamento.setTamanhoEntregue("G");
         fardamento.setQuantidadeEntregue(3);
-        //fardamento.setAluno(aluno);
-        //fardamento.setSituacao(situacao);
-        //fardamento.setTamanho(tamanho);
 
         em.persist(fardamento);
         em.flush();

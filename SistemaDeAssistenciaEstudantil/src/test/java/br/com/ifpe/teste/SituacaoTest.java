@@ -1,6 +1,5 @@
 package br.com.ifpe.teste;
 
-import br.com.ifpe.modelo.Livro;
 import br.com.ifpe.modelo.Situacao;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,10 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author nicolas
- */
+
 public class SituacaoTest {
     private static EntityManagerFactory emf;
     private EntityManager em;

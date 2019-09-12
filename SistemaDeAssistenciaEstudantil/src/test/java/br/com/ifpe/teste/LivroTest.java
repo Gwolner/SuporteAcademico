@@ -16,10 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author nicolas
- */
+
 public class LivroTest {
     private static EntityManagerFactory emf;
     private EntityManager em;
