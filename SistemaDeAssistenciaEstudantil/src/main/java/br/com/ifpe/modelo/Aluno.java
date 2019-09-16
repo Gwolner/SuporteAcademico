@@ -2,31 +2,27 @@ package br.com.ifpe.modelo;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name="tb_aluno")
-@Access(AccessType.FIELD)
-public class Aluno implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_aluno")
-    private long idAluno;
-    
-    @Column(name="nome_aluno", nullable = false, length = 100)
-    private String nomeAluno;
+@DiscriminatorValue(value="A") //Valor usado no campo descriminador
+@PrimaryKeyJoinColumn( //Definindo a PK de Aluno
+        name="id_aluno", //Nome da coluna PK de Aluno
+        referencedColumnName="id_usuario" //Referencia a PK de Usuario
+)
+public class Aluno extends Usuario implements Serializable{
     
     @Column(name="curso", nullable = false, length = 150)
     private String curso;
@@ -37,46 +33,42 @@ public class Aluno implements Serializable{
     @Column(name="matricula", nullable = false, length = 15)
     private String matricula;
     
-    @Column(name="cpf", nullable = false, length = 15)
-    private long cpf;
+    @Column(name="responsavel", nullable = false, length = 100)
+    private String responsavel;
     
-    @Column(name="celular", nullable = false, length = 11)
-    private int celular;
+    @Column(name="contato_responsavel", nullable = false, length = 11)
+    private long contatoResponsavel;
     
     @Column(name="email", nullable = false, length = 70)
     private String email;
     
-    @Transient //Campo que não será persistido. Apenas exibido na interface
+    @Transient //Campo que não será persistido, apenas exibido na interface
     private String referencia; 
 
     
     //Cardinalidade Aluno 1 : N Fardamento
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno",
             fetch = FetchType.LAZY)
-    protected List<Fardamento> fardamento;
+    protected List<Fardamento> fardamentos;
     
-    //Cardinalidade Aluno 1 : N Emprestimo
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "aluno",
-            fetch = FetchType.LAZY)
-    protected List<Emprestimo> emprestimo;
+    //Cardinalidade Aluno N : N Bolsa
+    @ManyToMany
+    @JoinTable(
+        name="tb_aluno_x_tb_bolsa", //Nome da tabela associativa
+        joinColumns= //Colaboração desta Entidade
+            @JoinColumn(
+                name="id_aluno", //Nome da coluna na tabelaa associativa
+                referencedColumnName="id_aluno" //Relação com esta coluna 
+            ), 
+        inverseJoinColumns= //Colaboração da Entidade oposta
+            @JoinColumn(
+                name="id_bolsa", //Nome da coluna na tabelaa associativa
+                referencedColumnName="id_bolsa"
+            )//Relação com coluna da Entidade oposta
+    )
+    protected List<Bolsa> bolsas;
+
     
-    
-    public long getIdAluno() {
-        return idAluno;
-    }
-
-    public void setIdAluno(long idAluno) {
-        this.idAluno = idAluno;
-    }
-
-    public String getNomeAluno() {
-        return nomeAluno;
-    }
-
-    public void setNomeAluno(String nomeAluno) {
-        this.nomeAluno = nomeAluno;
-    }
-
     public String getCurso() {
         return curso;
     }
@@ -101,20 +93,20 @@ public class Aluno implements Serializable{
         this.matricula = matricula;
     }
 
-    public long getCpf() {
-        return cpf;
+    public String getResponsavel() {
+        return responsavel;
     }
 
-    public void setCpf(long cpf) {
-        this.cpf = cpf;
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 
-    public int getCelular() {
-        return celular;
+    public long getContatoResponsavel() {
+        return contatoResponsavel;
     }
 
-    public void setCelular(int celular) {
-        this.celular = celular;
+    public void setContatoResponsavel(long contatoResponsavel) {
+        this.contatoResponsavel = contatoResponsavel;
     }
 
     public String getEmail() {
@@ -132,21 +124,30 @@ public class Aluno implements Serializable{
     public void setReferencia(String referencia) {
         this.referencia = referencia;
     }
-   
-    public List<Fardamento> getFardamento() {
-        return fardamento;
+
+    public List<Fardamento> getFardamentos() {
+        return fardamentos;
     }
 
-    public void setFardamento(List<Fardamento> fardamento) {
-        this.fardamento = fardamento;
+    public void setFardamentos(List<Fardamento> fardamentos) {
+        this.fardamentos = fardamentos;
     }
 
-    public List<Emprestimo> getEmprestimo() {
-        return emprestimo;
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
     }
 
-    public void setEmprestimo(List<Emprestimo> emprestimo) {
-        this.emprestimo = emprestimo;
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
     }
-   
-}
+
+    public List<Bolsa> getBolsas() {
+        return bolsas;
+    }
+
+    public void setBolsas(List<Bolsa> bolsas) {
+        this.bolsas = bolsas;
+    }
+    
+    
+  }

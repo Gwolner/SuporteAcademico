@@ -105,4 +105,5 @@ public class Fardamento implements Serializable {
         this.tamanho = tamanho;
     }
     
+    
 }

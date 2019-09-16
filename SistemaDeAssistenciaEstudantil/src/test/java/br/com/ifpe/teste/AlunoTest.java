@@ -69,7 +69,7 @@ public class AlunoTest {
 
         aluno.setNomeAluno(nomeAluno);
         aluno.setCurso(curso);
-        aluno.setCelular(numero);
+        aluno.setContato(numero);
         aluno.setTurno(turno);
         aluno.setMatricula(matricula);
         aluno.setCpf(cpf);
@@ -94,7 +94,7 @@ public class AlunoTest {
         Aluno aluno = em.find(Aluno.class, id);
         aluno.setNomeAluno(nomeAluno);
         aluno.setCurso(curso);
-        aluno.setCelular(numero);
+        aluno.setContato(numero);
         aluno.setTurno(turno);
         aluno.setMatricula(matricula);
         aluno.setCpf(cpf);
@@ -110,7 +110,7 @@ public class AlunoTest {
 
         assertEquals(nomeAluno, aluno.getNomeAluno());      
         assertEquals(curso, aluno.getCurso());   
-        assertEquals(numero, aluno.getCelular());   
+        assertEquals(numero, aluno.getContato());   
         assertEquals(turno, aluno.getTurno());   
         assertEquals(matricula, aluno.getMatricula());   
         assertEquals(cpf, aluno.getCpf());   
@@ -132,7 +132,7 @@ public class AlunoTest {
         
         aluno.setNomeAluno(novoNomeAluno);
         aluno.setCurso(novoCurso);
-        aluno.setCelular(novoNumero);
+        aluno.setContato(novoNumero);
         aluno.setTurno(novoTurno);
         aluno.setMatricula(novaMatricula);
         aluno.setEmail(novoEmail);
@@ -146,7 +146,7 @@ public class AlunoTest {
 
         assertEquals(novoNomeAluno, aluno.getNomeAluno());
         assertEquals(novoCurso, aluno.getCurso());
-        assertEquals(novoNumero, aluno.getCelular());   
+        assertEquals(novoNumero, aluno.getContato());   
         assertEquals(novoTurno, aluno.getTurno());   
         assertEquals(novaMatricula, aluno.getMatricula());   
         assertEquals(novoCpf, aluno.getCpf());   
@@ -174,7 +174,7 @@ public class AlunoTest {
 
         aluno.setNomeAluno(nomeAluno);
         aluno.setCurso(curso);
-        aluno.setCelular(numero);
+        aluno.setContato(numero);
         aluno.setTurno(turno);
         aluno.setMatricula(matricula);
         aluno.setCpf(cpf);

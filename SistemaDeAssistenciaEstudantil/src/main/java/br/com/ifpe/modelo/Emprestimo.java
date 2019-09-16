@@ -37,10 +37,10 @@ public class Emprestimo implements Serializable {
     private String status;
     
     
-    //Cardinalidade Aluno 1 : N Emprestimo
+    //Cardinalidade Usuario 1 : N Emprestimo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno") 
-    protected Aluno aluno;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") 
+    protected Usuario usuario;
     
     //Cardinalidade Livro 1 : N Emprestimo
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -80,14 +80,6 @@ public class Emprestimo implements Serializable {
         this.status = status;
     }
 
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
     public Livro getLivro() {
         return livro;
     }
@@ -95,5 +87,6 @@ public class Emprestimo implements Serializable {
     public void setLivro(Livro livro) {
         this.livro = livro;
     }
+    
     
 }

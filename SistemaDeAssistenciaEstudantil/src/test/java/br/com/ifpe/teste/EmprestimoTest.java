@@ -75,7 +75,7 @@ public class EmprestimoTest {
         Aluno aluno = new Aluno();
         aluno.setNomeAluno(nomeAluno);
         aluno.setCurso(curso);
-        aluno.setCelular(numero);
+        aluno.setContato(numero);
         aluno.setTurno(turno);
         aluno.setMatricula(matricula);
         aluno.setCpf(cpf);

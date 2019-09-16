@@ -79,7 +79,7 @@ public class GerarTabelas {
     private static void preencherAluno(Aluno aluno, List <Fardamento> fa) {
         aluno.setNomeAluno("Guilherme");
         aluno.setCpf(95606795);
-        aluno.setCelular(95606795);
+        aluno.setContato(95606795);
         aluno.setCurso("TADS");
         aluno.setEmail("gwdm@a.com");
         aluno.setMatricula("20172y6-rc0000");
