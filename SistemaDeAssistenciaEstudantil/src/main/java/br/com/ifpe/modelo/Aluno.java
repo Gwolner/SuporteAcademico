@@ -133,14 +133,6 @@ public class Aluno extends Usuario implements Serializable{
         this.fardamentos = fardamentos;
     }
 
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
-    }
-
-    public void setEmprestimos(List<Emprestimo> emprestimos) {
-        this.emprestimos = emprestimos;
-    }
-
     public List<Bolsa> getBolsas() {
         return bolsas;
     }
