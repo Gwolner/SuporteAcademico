@@ -1,6 +1,7 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -17,12 +18,22 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 public class Bolsa implements Serializable {
     
+    public Bolsa() {
+        this.alunos = new ArrayList<>();
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_bolsa")
-    private long idBolsa;
+    private Long idBolsa;
+    
+    @Column(name="nome_bolsa")
     private String nomeBolsa;
+    
+    @Column(name="tipo")
     private String tipo;
+    
+    @Column(name="valor")
     private double valor;
     
     
@@ -31,16 +42,16 @@ public class Bolsa implements Serializable {
     protected List<Aluno> alunos;
 
     
-    public long getIdBolsa() {
-        return idBolsa;
+    public Long getIdBolsa() {
+        return  this.idBolsa;
     }
 
-    public void setIdBolsa(long idBolsa) {
+    public void setIdBolsa(Long idBolsa) {
         this.idBolsa = idBolsa;
     }
 
     public String getNomeBolsa() {
-        return nomeBolsa;
+        return  this.nomeBolsa;
     }
 
     public void setNomeBolsa(String nomeBolsa) {
@@ -48,7 +59,7 @@ public class Bolsa implements Serializable {
     }
 
     public String getTipo() {
-        return tipo;
+        return  this.tipo;
     }
 
     public void setTipo(String tipo) {
@@ -56,7 +67,7 @@ public class Bolsa implements Serializable {
     }
 
     public double getValor() {
-        return valor;
+        return  this.valor;
     }
 
     public void setValor(double valor) {
@@ -64,12 +75,57 @@ public class Bolsa implements Serializable {
     }
 
     public List<Aluno> getAlunos() {
-        return alunos;
+        return  this.alunos;
     }
 
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
+    
+    public boolean addAluno(Aluno a) {
+        if (!alunos.contains(a)) {
+            a.addBolsa(this);
+            return alunos.add(a);
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public void addAllAlunos(List<Aluno> alunos) {
+        for (Aluno aluno : alunos) {
+            this.addAluno(aluno);
+        }
     }
     
     
+    public boolean removeAluno(Object o) {
+        if(!(o instanceof Aluno)){
+            return false;
+        }else{
+            return alunos.remove(o);
+        }    
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idBolsa != null ? idBolsa.hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Bolsa)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Bolsa other = (Bolsa) o;
+            return !((this.idBolsa == null && other.idBolsa != null)
+                    ||(this.idBolsa != null && 
+                    !this.idBolsa.equals(other.idBolsa))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }

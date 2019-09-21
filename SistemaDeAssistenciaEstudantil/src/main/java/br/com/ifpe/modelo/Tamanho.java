@@ -1,6 +1,7 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,10 +20,14 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 public class Tamanho implements Serializable {
     
+    public Tamanho() {
+        this.fardamentos = new ArrayList<>();
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_tamanho")
-    private long idTamanho;
+    private Long idTamanho;
     
     @Column(name="descricao_tamanho", nullable = false, length = 2)
     private String descricaoTamanho;
@@ -31,31 +36,75 @@ public class Tamanho implements Serializable {
     //Cardinalidade Tamanho 1 : N Fardamento
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "tamanho", 
             fetch = FetchType.LAZY)
-    protected List<Fardamento> fardamento;
+    protected List<Fardamento> fardamentos;
     
     
-    public long getIdTamanho() {
-        return idTamanho;
+    public Long getIdTamanho() {
+        return this.idTamanho;
     }
 
-    public void setIdTamanho(long idTamanho) {
+    public void setIdTamanho(Long idTamanho) {
         this.idTamanho = idTamanho;
     }
 
     public String getDescricaoTamanho() {
-        return descricaoTamanho;
+        return this.descricaoTamanho;
     }
 
     public void setDescricaoTamanho(String descricaoTamanho) {
         this.descricaoTamanho = descricaoTamanho;
     }
 
-    public List<Fardamento> getFardamento() {
-        return fardamento;
+    public List<Fardamento> getFardamentos() {
+        return this.fardamentos;
     }
 
-    public void setFardamento(List<Fardamento> fardamento) {
-        this.fardamento = fardamento;
+    public boolean addFardamento(Fardamento f) {
+        if (!fardamentos.contains(f)) {
+            f.setTamanho(this);
+            return fardamentos.add(f);
+        } else {
+            return false;
+        }   
     }
     
+    public void addAllFardamentos(List<Fardamento> fardamentos) {
+        for (Fardamento fardamento : fardamentos) {
+            this.addFardamento(fardamento);
+        }
+    }
+    
+    public boolean removeFardamento(Object o) {
+        if(!(o instanceof Fardamento)){
+            return false;
+        }else{
+            return fardamentos.remove(o);
+        }    
+    }
+    
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idTamanho != null ? idTamanho.hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Tamanho)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Tamanho other = (Tamanho) o;
+            return !((this.idTamanho == null && other.idTamanho != null)
+                    ||(this.idTamanho != null && 
+                    !this.idTamanho.equals(other.idTamanho))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }

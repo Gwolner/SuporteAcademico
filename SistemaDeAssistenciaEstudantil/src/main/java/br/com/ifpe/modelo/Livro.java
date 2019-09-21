@@ -1,6 +1,7 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -21,10 +22,14 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 public class Livro implements Serializable {
     
+    public Livro() {
+        this.emprestimos = new ArrayList<>();
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_livro")
-    private long idLivro;
+    private Long idLivro;
     
     @Column(name="materia", nullable = false, length = 45)
     private String materia;
@@ -36,7 +41,7 @@ public class Livro implements Serializable {
     private String autor;
     
     @Column(name="isbn", nullable = false, length = 100)
-    private long isbn;
+    private Long isbn;
     
     @Column(name="quantidade",nullable = false, length = 5)
     private int quantidade;
@@ -45,7 +50,7 @@ public class Livro implements Serializable {
     //Cardinalidade Livro 1 : N Emprestimo
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "livro", 
             fetch = FetchType.LAZY)
-    protected List<Emprestimo> emprestimo;
+    protected List<Emprestimo> emprestimos;
 
     //Cardinalidade Volume 1 : N Livro
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -53,16 +58,16 @@ public class Livro implements Serializable {
     protected Volume volume;
 
     
-    public long getIdLivro() {
-        return idLivro;
+    public Long getIdLivro() {
+        return this.idLivro;
     }
 
-    public void setIdLivro(long idLivro) {
+    public void setIdLivro(Long idLivro) {
         this.idLivro = idLivro;
     }
 
     public String getMateria() {
-        return materia;
+        return this.materia;
     }
 
     public void setMateria(String materia) {
@@ -70,7 +75,7 @@ public class Livro implements Serializable {
     }
 
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -78,43 +83,86 @@ public class Livro implements Serializable {
     }
 
     public String getAutor() {
-        return autor;
+        return this.autor;
     }
 
     public void setAutor(String autor) {
         this.autor = autor;
     }
 
-    public long getIsbn() {
-        return isbn;
+    public Long getIsbn() {
+        return this.isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 
     public int getQuantidade() {
-        return quantidade;
+        return this.quantidade;
     }
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
-    public List<Emprestimo> getEmprestimo() {
-        return emprestimo;
-    }
-
-    public void setEmprestimo(List<Emprestimo> emprestimo) {
-        this.emprestimo = emprestimo;
-    }
-
     public Volume getVolume() {
-        return volume;
+        return this.volume;
     }
 
     public void setVolume(Volume volume) {
         this.volume = volume;
     }
+
+    public List<Emprestimo> getEmprestimos() {
+        return this.emprestimos;
+    }
+
+    public boolean addEmprestimo(Emprestimo e) {
+        if (!emprestimos.contains(e)) {
+            e.setLivro(this);
+            return emprestimos.add(e);
+        } else {
+            return false;
+        }      
+    }
     
+    public void addAllEmprestimos(List<Emprestimo> emprestimos) {
+        for (Emprestimo emprestimo : emprestimos) {
+            this.addEmprestimo(emprestimo);
+        }
+    }
+    
+    public boolean removeEmprestimo(Object o) {
+        if(!(o instanceof Emprestimo)){
+            return false;
+        }else{
+            return emprestimos.remove(o);
+        }    
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idLivro != null ? idLivro.hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Livro)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Livro other = (Livro) o;
+            return !((this.idLivro == null && other.idLivro != null)
+                    ||(this.idLivro != null && 
+                    !this.idLivro.equals(other.idLivro))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }

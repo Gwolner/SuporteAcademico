@@ -19,47 +19,59 @@ public class Professor extends Usuario implements Serializable {
     @Column(name="siape", nullable = false, length = 8)
     private int siape;
     
-    @Column(name="setor", nullable = false, length = 100)
-    private String setor;
-    
     @Column(name="departamento", nullable = false, length = 100)
     private String departamento;
     
     @Column(name="ramal", nullable = false, length = 15)
-    private long ramal;
+    private Long ramal;
 
     
     public int getSiape() {
-        return siape;
+        return this.siape;
     }
 
     public void setSiape(int siape) {
         this.siape = siape;
     }
 
-    public String getSetor() {
-        return setor;
-    }
-
-    public void setSetor(String setor) {
-        this.setor = setor;
-    }
-
     public String getDepartamento() {
-        return departamento;
+        return this.departamento;
     }
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
 
-    public long getRamal() {
-        return ramal;
+    public Long getRamal() {
+        return this.ramal;
     }
 
-    public void setRamal(long ramal) {
+    public void setRamal(Long ramal) {
         this.ramal = ramal;
     }
+
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += (super.getIdUsuario() != null ? super.getIdUsuario().hashCode():0);
+        return hash;
+    }
     
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Professor)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Professor other = (Professor) o;
+            return !((super.getIdUsuario() == null && other.getIdUsuario() != null)
+                    ||(super.getIdUsuario() != null && 
+                    !super.getIdUsuario().equals(other.getIdUsuario()))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
     
 }

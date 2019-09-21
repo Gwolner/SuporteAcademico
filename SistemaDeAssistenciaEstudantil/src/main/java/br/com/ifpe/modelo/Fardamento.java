@@ -16,12 +16,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="tb_fardamento")
 @Access(AccessType.FIELD)
-public class Fardamento implements Serializable {
+public class Fardamento implements Serializable {   
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_fardamento")
-    private long idFardamento;
+    private Long idFardamento;
     
     @Column(name="tamanho_pedido", nullable = false, length = 100)
     private String tamanhoPedido;
@@ -49,11 +49,11 @@ public class Fardamento implements Serializable {
     protected Tamanho tamanho;
 
     
-    public long getIdFardamento() {
+    public Long getIdFardamento() {
         return idFardamento;
     }
 
-    public void setIdFardamento(long idFardamento) {
+    public void setIdFardamento(Long idFardamento) {
         this.idFardamento = idFardamento;
     }
 
@@ -105,5 +105,27 @@ public class Fardamento implements Serializable {
         this.tamanho = tamanho;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idFardamento != null ? idFardamento.hashCode():0);
+        return hash;
+    }
     
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Fardamento)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Fardamento other = (Fardamento) o;
+            return !((this.idFardamento == null && other.idFardamento != null)
+                    ||(this.idFardamento != null && 
+                    !this.idFardamento.equals(other.idFardamento))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }

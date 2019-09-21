@@ -1,13 +1,14 @@
 package br.com.ifpe.teste;
 
 import br.com.ifpe.modelo.Aluno;
+import br.com.ifpe.modelo.Bolsa;
 import br.com.ifpe.modelo.Emprestimo;
 import br.com.ifpe.modelo.Fardamento;;
 import br.com.ifpe.modelo.Situacao;
 import br.com.ifpe.modelo.Tamanho;
 import br.com.ifpe.modelo.Volume;
-import java.util.ArrayList;
-import java.util.List;
+import br.com.ifpe.modelo.Professor;
+import br.com.ifpe.modelo.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -19,30 +20,30 @@ public class GerarTabelas {
     public static void main(String[] args) {      
         
         //Instanciando Entidades!
+        Usuario usuario = new Usuario();
         Aluno aluno = new Aluno();
+        Professor professor = new Professor();
         Emprestimo emprestimo = new Emprestimo();
-        Fardamento fardamento = new Fardamento();
         Livro livro = new Livro();
-        Situacao situacao = new Situacao();
-        Tamanho tamanho = new Tamanho();
-        Volume volume = new Volume();
         
-        //Instanciando Listas
-        List <Fardamento> fardamentosAluno = new ArrayList();
-        List <Fardamento> fardamentoSituacao = new ArrayList();
-        List <Fardamento> fardamentoTamanho = new ArrayList();
-        List <Emprestimo> emprestimoAluno = new ArrayList();
-        List <Emprestimo> emprestimoLivro = new ArrayList();        
-        List <Livro> livroVolume = new ArrayList();
-              
+        
+        Volume volume = new Volume();
+        Bolsa bolsa = new Bolsa();
+        Fardamento fardamento = new Fardamento();
+        Tamanho tamanho = new Tamanho();
+        Situacao situacao = new Situacao();
+       
+        
+        
+        
         //Populando as Entidades
-        preencherAluno(aluno, fardamentosAluno);
+        preencherAluno(aluno);
         preencherEmprestimo(emprestimo, aluno, livro);
         preencherFardamento(fardamento, aluno, situacao, tamanho);
-        preencherLivro(livro, volume, emprestimoLivro);
-        preencherSituacao(situacao, fardamentoSituacao);
-        preencherTamanho(tamanho, fardamentoTamanho);
-        preencherVolume(volume, livroVolume);
+        preencherLivro(livro, volume);
+        preencherSituacao(situacao);
+        preencherTamanho(tamanho);
+        preencherVolume(volume);
         
         
         EntityManagerFactory emf = null;
@@ -63,6 +64,9 @@ public class GerarTabelas {
             em.persist(situacao);
             em.persist(tamanho);
             em.persist(volume);
+            em.persist(professor);
+            em.persist(bolsa);
+            em.persist(usuario);
             
             et.commit();
         } catch (Exception ex) {
@@ -76,16 +80,15 @@ public class GerarTabelas {
         }
     }
 
-    private static void preencherAluno(Aluno aluno, List <Fardamento> fa) {
-        aluno.setNomeAluno("Guilherme");
-        aluno.setCpf(95606795);
-        aluno.setContato(95606795);
+    private static void preencherAluno(Aluno aluno) {
+        aluno.setNomeUsuario("Guilherme");
+        aluno.setCpf(95606795L);
+        aluno.setContatoResponsavel(95606795L);
         aluno.setCurso("TADS");
         aluno.setEmail("gwdm@a.com");
         aluno.setMatricula("20172y6-rc0000");
         aluno.setTurno("Noite");
         aluno.setReferencia("Olá");
-        aluno.setFardamento(fa);
     }
 
     private static void preencherEmprestimo(Emprestimo emprestimo, Aluno aluno, 
@@ -94,7 +97,7 @@ public class GerarTabelas {
 //        emprestimo.setDataDevolucao(23/08/2019);
 //        emprestimo.setDataEntrega(08/09/2019);
         emprestimo.setStatus("Devolvido");
-        emprestimo.setAluno(aluno);
+        emprestimo.setUsuario(aluno);
         emprestimo.setLivro(livro);
     }
     
@@ -109,20 +112,18 @@ public class GerarTabelas {
 //        fardamento.setSituacao(sit);
     }
     
-    private static void preencherLivro(Livro livro, Volume vol, 
-            List <Emprestimo> el){
+    private static void preencherLivro(Livro livro, Volume vol){
         
         livro.setTitulo("O conde de Monte Cristo");
         livro.setAutor("Alexandre Dumas");
-        livro.setIsbn(12587);
+        livro.setIsbn(12587L);
         livro.setMateria("Paradidático");
         livro.setQuantidade(25);  
 //        livro.setVolume(vol);
 //        livro.setEmprestimo(el);
     }
     
-    private static void preencherSituacao(Situacao situacao, 
-            List <Fardamento> fs ){
+    private static void preencherSituacao(Situacao situacao){
         
         situacao.setDescricaoSituacao("Não entregue");
 //        situacao.setFardamento(fs);
@@ -133,8 +134,7 @@ public class GerarTabelas {
         
     }
     
-    private static void preencherTamanho(Tamanho tamanho, 
-            List <Fardamento> ft){
+    private static void preencherTamanho(Tamanho tamanho){
         
         tamanho.setDescricaoTamanho("M");
 //        tamanho.setFardamento(ft);
@@ -145,8 +145,7 @@ public class GerarTabelas {
         
     }
     
-    private static void preencherVolume(Volume volume, 
-            List <Livro> lv){
+    private static void preencherVolume(Volume volume){
         
         volume.setDescricaoVolume("Volume único");
 //        volume.setLivro(lv);

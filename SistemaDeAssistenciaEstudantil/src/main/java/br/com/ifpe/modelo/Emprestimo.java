@@ -23,7 +23,7 @@ public class Emprestimo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_emprestimo")
-    private long idEmprestimo;
+    private Long idEmprestimo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name="data_entrega", nullable = true)
@@ -48,16 +48,16 @@ public class Emprestimo implements Serializable {
     protected Livro livro;
 
     
-    public long getIdEmprestimo() {
-        return idEmprestimo;
+    public Long getIdEmprestimo() {
+        return this.idEmprestimo;
     }
 
-    public void setIdEmprestimo(long idEmprestimo) {
+    public void setIdEmprestimo(Long idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
     public Date getDataEntrega() {
-        return dataEntrega;
+        return this.dataEntrega;
     }
 
     public void setDataEntrega(Date dataEntrega) {
@@ -65,7 +65,7 @@ public class Emprestimo implements Serializable {
     }
 
     public Date getDataDevolucao() {
-        return dataDevolucao;
+        return this.dataDevolucao;
     }
 
     public void setDataDevolucao(Date dataDevolucao) {
@@ -73,7 +73,7 @@ public class Emprestimo implements Serializable {
     }
 
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(String status) {
@@ -81,7 +81,7 @@ public class Emprestimo implements Serializable {
     }
 
     public Livro getLivro() {
-        return livro;
+        return this.livro;
     }
 
     public void setLivro(Livro livro) {
@@ -89,13 +89,35 @@ public class Emprestimo implements Serializable {
     }
 
     public Usuario getUsuario() {
-        return usuario;
+        return this.usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idEmprestimo != null ? idEmprestimo.hashCode():0);
+        return hash;
+    }
     
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Emprestimo)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Emprestimo other = (Emprestimo) o;
+            return !((this.idEmprestimo == null && other.idEmprestimo != null)
+                    ||(this.idEmprestimo != null && 
+                    !this.idEmprestimo.equals(other.idEmprestimo))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
     
 }

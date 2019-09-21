@@ -1,6 +1,7 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,10 +20,14 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 public class Volume implements Serializable {
     
+    public Volume() {
+        this.livros = new ArrayList<>();
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_volume")
-    private long idVolume;
+    private Long idVolume;
     
     @Column(name="descricao_volume", nullable = false, length = 12)
     private String descricaoVolume;
@@ -31,31 +36,73 @@ public class Volume implements Serializable {
     //Cardinalidade Volume 1 : N Livro
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "volume", 
             fetch = FetchType.LAZY)
-    protected List<Livro> livro;
+    protected List<Livro> livros;
     
     
-    public long getIdVolume() {
-        return idVolume;
+    public Long getIdVolume() {
+        return this.idVolume;
     }
 
-    public void setIdVolume(long idVolume) {
+    public void setIdVolume(Long idVolume) {
         this.idVolume = idVolume;
     }
 
     public String getDescricaoVolume() {
-        return descricaoVolume;
+        return this.descricaoVolume;
     }
 
     public void setDescricaoVolume(String descricaoVolume) {
         this.descricaoVolume = descricaoVolume;
     }
 
-    public List<Livro> getLivro() {
-        return livro;
+    public List<Livro> getLivros() {
+        return this.livros;
     }
 
-    public void setLivro(List<Livro> livro) {
-        this.livro = livro;
+    public boolean addLivro(Livro l) {
+        if (!livros.contains(l)) {
+            l.setVolume(this);
+            return livros.add(l);
+        } else {
+            return false;
+        }    
     }
     
+    public void addAllLivros(List<Livro> livros) {
+        for (Livro livro : livros) {
+            this.addLivro(livro);
+        }
+    }
+    
+    public boolean removeLivro(Object o) {
+        if(!(o instanceof Livro)){
+            return false;
+        }else{
+            return livros.remove(o);
+        }    
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idVolume != null ? idVolume.hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Volume)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Volume other = (Volume) o;
+            return !((this.idVolume == null && other.idVolume != null)
+                    ||(this.idVolume != null && 
+                    !this.idVolume.equals(other.idVolume))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }

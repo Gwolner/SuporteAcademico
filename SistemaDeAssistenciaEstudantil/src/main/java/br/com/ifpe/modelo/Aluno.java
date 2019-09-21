@@ -1,6 +1,7 @@
 package br.com.ifpe.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,6 +25,11 @@ import javax.persistence.Transient;
 )
 public class Aluno extends Usuario implements Serializable{
     
+    public Aluno() {
+        this.fardamentos = new ArrayList<>();
+        this.bolsas = new ArrayList<>();
+    }
+    
     @Column(name="curso", nullable = false, length = 150)
     private String curso;
     
@@ -37,7 +43,7 @@ public class Aluno extends Usuario implements Serializable{
     private String responsavel;
     
     @Column(name="contato_responsavel", nullable = false, length = 11)
-    private long contatoResponsavel;
+    private Long contatoResponsavel;
     
     @Column(name="email", nullable = false, length = 70)
     private String email;
@@ -70,7 +76,7 @@ public class Aluno extends Usuario implements Serializable{
 
     
     public String getCurso() {
-        return curso;
+        return this.curso;
     }
 
     public void setCurso(String curso) {
@@ -78,7 +84,7 @@ public class Aluno extends Usuario implements Serializable{
     }
 
     public String getTurno() {
-        return turno;
+        return this.turno;
     }
 
     public void setTurno(String turno) {
@@ -86,7 +92,7 @@ public class Aluno extends Usuario implements Serializable{
     }
 
     public String getMatricula() {
-        return matricula;
+        return this.matricula;
     }
 
     public void setMatricula(String matricula) {
@@ -94,23 +100,23 @@ public class Aluno extends Usuario implements Serializable{
     }
 
     public String getResponsavel() {
-        return responsavel;
+        return this.responsavel;
     }
 
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
     }
 
-    public long getContatoResponsavel() {
-        return contatoResponsavel;
+    public Long getContatoResponsavel() {
+        return this.contatoResponsavel;
     }
 
-    public void setContatoResponsavel(long contatoResponsavel) {
+    public void setContatoResponsavel(Long contatoResponsavel) {
         this.contatoResponsavel = contatoResponsavel;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -118,28 +124,103 @@ public class Aluno extends Usuario implements Serializable{
     }
 
     public String getReferencia() {
-        return referencia;
+        //Tratar campo transiente
+        return this.referencia;
     }
 
     public void setReferencia(String referencia) {
+        //Tratar campo transiente
         this.referencia = referencia;
     }
 
+    
+    
+    
     public List<Fardamento> getFardamentos() {
-        return fardamentos;
+        return this.fardamentos;
     }
 
-    public void setFardamentos(List<Fardamento> fardamentos) {
-        this.fardamentos = fardamentos;
+    public boolean addFardamento(Fardamento f) {
+        if (!fardamentos.contains(f)) {
+            f.setAluno(this);
+            return fardamentos.add(f);
+        } else {
+            return false;
+        }   
     }
-
+    
+    public void addAllFardamentos(List<Fardamento> fardamentos) {
+        for (Fardamento fardamento : fardamentos) {
+            this.addFardamento(fardamento);
+        }
+    }
+    
+    
+    
+    
+    
     public List<Bolsa> getBolsas() {
-        return bolsas;
+        return this.bolsas;
     }
 
-    public void setBolsas(List<Bolsa> bolsas) {
-        this.bolsas = bolsas;
+     public boolean addBolsa(Bolsa b) {
+        if (!bolsas.contains(b)) {
+            b.addAluno(this);
+            return bolsas.add(b);
+        } else {
+            return false;
+        }   
     }
+    
+    public void addAllBolsas(List<Bolsa> bolsas) {
+        for (Bolsa bolsa : bolsas) {
+            this.addBolsa(bolsa);
+        }
+    }
+    
+    public boolean removeBolsa(Object o) {
+        if(!(o instanceof Bolsa)){
+            return false;
+        }else{
+            return bolsas.remove(o);
+        }    
+    }
+    
+    public boolean removeFardamento(Object o) {
+        if(!(o instanceof Fardamento)){
+            return false;
+        }else{
+            return fardamentos.remove(o);
+        }    
+    }
+   
+    
+    
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += (super.getIdUsuario() != null ? super.getIdUsuario().hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Aluno)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Aluno other = (Aluno) o;
+            return !((super.getIdUsuario() == null && other.getIdUsuario() != null)
+                    ||(super.getIdUsuario() != null && 
+                    !super.getIdUsuario().equals(other.getIdUsuario()))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
+    
+    
     
     
   }

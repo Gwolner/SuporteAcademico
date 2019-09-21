@@ -39,13 +39,13 @@ public class Usuario implements Serializable { //Classe Pai na herança
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private long idUsuario;
+    private Long idUsuario;
     
     @Column(name = "nome_usuario", nullable = false, length = 100)
     private String nomeUsuario;
     
     @Column(name = "cpf", nullable = false, length = 15)
-    private long cpf;
+    private Long cpf;
     
     @Column(name = "rg", nullable = false, length = 10)
     private int rg;
@@ -59,32 +59,33 @@ public class Usuario implements Serializable { //Classe Pai na herança
             fetch = FetchType.LAZY)
     protected List<Emprestimo> emprestimos;
     
-    public long getIdUsuario() {
-        return idUsuario;
+    
+    public Long getIdUsuario() {
+        return this.idUsuario;
     }
     
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
     
     public String getNomeUsuario() {
-        return nomeUsuario;
+        return this.nomeUsuario;
     }
     
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
     
-    public long getCpf() {
-        return cpf;
+    public Long getCpf() {
+        return this.cpf;
     }
     
-    public void setCpf(long cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
     
     public int getRg() {
-        return rg;
+        return this.rg;
     }
     
     public void setRg(int rg) {
@@ -92,14 +93,29 @@ public class Usuario implements Serializable { //Classe Pai na herança
     }
     
     public Data getDataNascimento() {
-        return dataNascimento;
+        return this.dataNascimento;
     }
     
     public void setDataNascimento(Data dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     
-    public boolean add(Emprestimo e) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+    
+    public boolean addEmprestimo(Emprestimo e) {
         if (!emprestimos.contains(e)) {
             e.setUsuario(this);
             return emprestimos.add(e);
@@ -109,18 +125,44 @@ public class Usuario implements Serializable { //Classe Pai na herança
         
     }
     
-    public boolean remove(Object o) {
-        return emprestimos.remove(o);
-    }
-    
-    public List<Emprestimo> getEmprestimos() {
-        return emprestimos;
-    }
-    
-    public void addEmprestimos(List<Emprestimo> emprestimos) {
+    public void addAllEmprestimos(List<Emprestimo> emprestimos) {
         for (Emprestimo emprestimo : emprestimos) {
-            this.add(emprestimo);
+            this.addEmprestimo(emprestimo);
         }
     }
     
+    public boolean removeEmprestimo(Object o) {
+        if(!(o instanceof Emprestimo)){
+            return false;
+        }else{
+            return emprestimos.remove(o);
+        }    
+    }   
+    
+    
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idUsuario != null ? idUsuario.hashCode():0);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (!(o instanceof Usuario)) {
+            return false; //Se não for a instância desejada, retorna false;
+        }else{ 
+            Usuario other = (Usuario) o;
+            return !((this.idUsuario == null && other.idUsuario != null)
+                    ||(this.idUsuario != null && 
+                    !this.idUsuario.equals(other.idUsuario))
+            );
+        /* 
+         * Se a sentença for verdadeira, retorna false. 
+         * Se for falsa, retorna true.        
+         */
+        }
+    }
 }
