@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_bolsa")
+@Table(name="TB_BOLSA")
 @Access(AccessType.FIELD)
 public class Bolsa implements Serializable {
     
@@ -34,7 +34,7 @@ public class Bolsa implements Serializable {
     private String tipo;
     
     @Column(name="valor")
-    private double valor;
+    private Double valor;
     
     
     //Cardinalidade Aluno N : N Bolsa
@@ -66,11 +66,11 @@ public class Bolsa implements Serializable {
         this.tipo = tipo;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return  this.valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

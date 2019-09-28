@@ -1,8 +1,8 @@
 package br.com.ifpe.modelo;
 
-import com.mysql.fabric.xmlrpc.base.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -22,7 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "TB_USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)//Estrategia adotada na herença
 @DiscriminatorColumn(
         name = "disc_usuario", //Coluna que distingue a subclasse
@@ -52,7 +52,7 @@ public class Usuario implements Serializable { //Classe Pai na herança
     
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "data_nascimento", nullable = true)
-    private Data dataNascimento;
+    private Date dataNascimento;
 
     //Cardinalidade Aluno 1 : N Emprestimo
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario",
@@ -92,11 +92,11 @@ public class Usuario implements Serializable { //Classe Pai na herança
         this.rg = rg;
     }
     
-    public Data getDataNascimento() {
+    public Date getDataNascimento() {
         return this.dataNascimento;
     }
     
-    public void setDataNascimento(Data dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
     

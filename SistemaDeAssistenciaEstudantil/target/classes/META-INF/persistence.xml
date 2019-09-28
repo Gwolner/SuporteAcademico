@@ -13,18 +13,22 @@
     <class>br.com.ifpe.modelo.Livro</class>
     <class>br.com.ifpe.modelo.Situacao</class>
     <class>br.com.ifpe.modelo.Emprestimo</class>
-    <class>br.com.ifpe.modelo.Volume</class>
+    <class>br.com.ifpe.modelo.Volume</class>    
+    <class>br.com.ifpe.modelo.Usuario</class>
+    <class>br.com.ifpe.modelo.Professor</class>
+    <class>br.com.ifpe.modelo.Bolsa</class>
     
     <properties>
       <!--Dados da conexão-->
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/bd_guilherme"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_sae"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       
       <!--Dados do EclipseLink-->
       <property name="eclipselink.logging.level" value="FINE"/>
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
     </properties>
   </persistence-unit> 
 </persistence>

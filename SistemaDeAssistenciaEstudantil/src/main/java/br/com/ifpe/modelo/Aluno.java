@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name="tb_aluno")
+@Table(name="TB_ALUNO")
 @DiscriminatorValue(value="A") //Valor usado no campo descriminador
 @PrimaryKeyJoinColumn( //Definindo a PK de Aluno
         name="id_aluno", //Nome da coluna PK de Aluno
@@ -60,7 +60,7 @@ public class Aluno extends Usuario implements Serializable{
     //Cardinalidade Aluno N : N Bolsa
     @ManyToMany
     @JoinTable(
-        name="tb_aluno_x_tb_bolsa", //Nome da tabela associativa
+        name="TB_ALUNO_x_TB_BOLSA", //Nome da tabela associativa
         joinColumns= //Colaboração desta Entidade
             @JoinColumn(
                 name="id_aluno", //Nome da coluna na tabelaa associativa

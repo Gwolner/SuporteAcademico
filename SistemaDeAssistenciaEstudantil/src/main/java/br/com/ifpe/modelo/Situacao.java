@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_situacao")
+@Table(name="TB_SITUACAO")
 @Access(AccessType.FIELD)
 public class Situacao implements Serializable {
     
@@ -29,7 +29,7 @@ public class Situacao implements Serializable {
     @Column(name="id_situacao")
     private Long idSituacao;
     
-    @Column(name="nome_aluno", nullable = false, length = 15)
+    @Column(name="descricao_situacao", nullable = false, length = 15)
     private String descricaoSituacao;
     
     

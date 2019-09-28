@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_tamanho")
+@Table(name="TB_TAMANHO")
 @Access(AccessType.FIELD)
 public class Tamanho implements Serializable {
     

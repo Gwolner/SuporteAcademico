@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_professor")
+@Table(name="TB_PROFESSOR")
 @DiscriminatorValue(value="P") //Valor usado no campo descriminador
 @PrimaryKeyJoinColumn( //Definindo a PK de Professor
         name="id_professor", //Nome da coluna PK de Professor

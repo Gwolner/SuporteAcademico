@@ -7,14 +7,14 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-09-11T16:57:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2019-09-25T19:49:49")
 @StaticMetamodel(Livro.class)
 public class Livro_ { 
 
     public static volatile SingularAttribute<Livro, Volume> volume;
-    public static volatile ListAttribute<Livro, Emprestimo> emprestimo;
     public static volatile SingularAttribute<Livro, Long> isbn;
     public static volatile SingularAttribute<Livro, Long> idLivro;
+    public static volatile ListAttribute<Livro, Emprestimo> emprestimos;
     public static volatile SingularAttribute<Livro, String> titulo;
     public static volatile SingularAttribute<Livro, String> materia;
     public static volatile SingularAttribute<Livro, Integer> quantidade;

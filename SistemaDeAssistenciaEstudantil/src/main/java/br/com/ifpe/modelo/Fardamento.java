@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_fardamento")
+@Table(name="TB_FARDAMENTO")
 @Access(AccessType.FIELD)
 public class Fardamento implements Serializable {   
     
@@ -22,12 +22,6 @@ public class Fardamento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_fardamento")
     private Long idFardamento;
-    
-    @Column(name="tamanho_pedido", nullable = false, length = 100)
-    private String tamanhoPedido;
-    
-    @Column(name="tamanho_entregue", nullable = false, length = 100)
-    private String tamanhoEntregue;
     
     @Column(name="quantidade_entregue", nullable = false, length = 2)
     private int quantidadeEntregue;
@@ -55,22 +49,6 @@ public class Fardamento implements Serializable {
 
     public void setIdFardamento(Long idFardamento) {
         this.idFardamento = idFardamento;
-    }
-
-    public String getTamanhoPedido() {
-        return tamanhoPedido;
-    }
-
-    public void setTamanhoPedido(String tamanhoPedido) {
-        this.tamanhoPedido = tamanhoPedido;
-    }
-
-    public String getTamanhoEntregue() {
-        return tamanhoEntregue;
-    }
-
-    public void setTamanhoEntregue(String tamanhoEntregue) {
-        this.tamanhoEntregue = tamanhoEntregue;
     }
 
     public int getQuantidadeEntregue() {

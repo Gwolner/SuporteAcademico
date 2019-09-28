@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 @Entity
-@Table(name="tb_emprestimo")
+@Table(name="TB_EMPRESTIMO")
 @Access(AccessType.FIELD)
 public class Emprestimo implements Serializable {
     
