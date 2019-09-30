@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_BOLSA")
@@ -27,13 +30,22 @@ public class Bolsa implements Serializable {
     @Column(name="id_bolsa")
     private Long idBolsa;
     
+    @NotBlank
+    @Size(max=45)
     @Column(name="nome_bolsa")
+//    @Column(name="nome_bolsa", nullable = false, length = 45)
     private String nomeBolsa;
     
+    @NotBlank
+    @Size(max=45)
     @Column(name="tipo")
+//    @Column(name="tipo", nullable = false, length = 45)
     private String tipo;
     
+    @NotBlank
+    @Size(max=8)
     @Column(name="valor")
+//    @Column(name="valor", nullable = false, length = 8)
     private Double valor;
     
     

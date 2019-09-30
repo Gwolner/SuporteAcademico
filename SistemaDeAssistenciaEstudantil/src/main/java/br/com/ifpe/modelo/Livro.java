@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_LIVRO")
@@ -31,19 +34,34 @@ public class Livro implements Serializable {
     @Column(name="id_livro")
     private Long idLivro;
     
-    @Column(name="materia", nullable = false, length = 45)
+    @NotBlank
+    @Size(max=45)
+    @Column(name="materia")
+//    @Column(name="materia", nullable = false, length = 45)
     private String materia;
     
-    @Column (name="titulo", nullable = false, length = 150)
+    @NotBlank
+    @Size(max=150)
+    @Column(name="titulo")
+//    @Column (name="titulo", nullable = false, length = 150)
     private String titulo;
     
-    @Column(name="autor", nullable = false, length = 100)
+    @NotBlank
+    @Size(max=100)
+    @Column(name="autor")
+//    @Column(name="autor", nullable = false, length = 100)
     private String autor;
     
-    @Column(name="isbn", nullable = false, length = 100)
+    @NotBlank
+    @Size(max=100)
+    @Column(name="isbn")
+//    @Column(name="isbn", nullable = false, length = 100)
     private Long isbn;
     
-    @Column(name="quantidade",nullable = false, length = 5)
+    @NotBlank
+    @Size(max=5)
+    @Column(name="quantidade")
+//    @Column(name="quantidade",nullable = false, length = 5)
     private int quantidade;
     
     
@@ -52,7 +70,8 @@ public class Livro implements Serializable {
             fetch = FetchType.LAZY)
     protected List<Emprestimo> emprestimos;
 
-    //Cardinalidade Volume 1 : N Livro
+    //Cardinalidade Volume 1 : N Livro    
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_volume", referencedColumnName = "id_volume")
     protected Volume volume;

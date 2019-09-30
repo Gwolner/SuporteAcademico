@@ -6,6 +6,9 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_PROFESSOR")
@@ -16,13 +19,22 @@ import javax.persistence.Table;
 )
 public class Professor extends Usuario implements Serializable {
     
-    @Column(name="siape", nullable = false, length = 8)
+    @NotBlank
+    @Size(max=8)
+    @Column(name="siape")
+//    @Column(name="siape", nullable = false, length = 8)
     private int siape;
     
-    @Column(name="departamento", nullable = false, length = 100)
-    private String departamento;
+    @NotBlank
+    @Size(min = 3, max=100)
+    @Column(name="departamento")
+//    @Column(name="departamento", nullable = false, length = 100)
+    private String departamento;    
     
-    @Column(name="ramal", nullable = false, length = 15)
+    @NotBlank
+    @Size(max=15)
+    @Column(name="ramal")
+//    @Column(name="ramal", nullable = false, length = 15)
     private Long ramal;
 
     

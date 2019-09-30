@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_SITUACAO")
@@ -29,7 +31,10 @@ public class Situacao implements Serializable {
     @Column(name="id_situacao")
     private Long idSituacao;
     
-    @Column(name="descricao_situacao", nullable = false, length = 15)
+    @NotBlank
+    @Size(max=15)
+    @Column(name="descricao_situacao")
+//    @Column(name="descricao_situacao", nullable = false, length = 15)
     private String descricaoSituacao;
     
     

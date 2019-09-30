@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_ALUNO")
@@ -30,22 +33,40 @@ public class Aluno extends Usuario implements Serializable{
         this.bolsas = new ArrayList<>();
     }
     
-    @Column(name="curso", nullable = false, length = 150)
+    @NotBlank
+    @Size(max=150)
+    @Column(name="curso")
+//    @Column(name="curso", nullable = false, length = 150)
     private String curso;
     
-    @Column(name="turno", nullable = false, length = 10)
+    @NotBlank
+    @Size(max=10)
+    @Column(name="turno")
+//    @Column(name="turno", nullable = false, length = 10)
     private String turno;
     
-    @Column(name="matricula", nullable = false, length = 15)
+    @NotBlank
+    @Size(max=15)
+    @Column(name="matricula")
+//    @Column(name="matricula", nullable = false, length = 15)
     private String matricula;
     
-    @Column(name="responsavel", nullable = false, length = 100)
+    @NotBlank
+    @Size(max=100)
+    @Column(name="responsavel")
+//    @Column(name="responsavel", nullable = false, length = 100)
     private String responsavel;
     
-    @Column(name="contato_responsavel", nullable = false, length = 11)
+    @NotBlank
+    @Size(max=11)
+    @Column(name="contato_responsavel")
+//    @Column(name="contato_responsavel", nullable = false, length = 11)
     private Long contatoResponsavel;
     
-    @Column(name="email", nullable = false, length = 70)
+    @NotBlank
+    @Size(max=70)
+    @Column(name="email")
+//    @Column(name="email", nullable = false, length = 70)
     private String email;
     
     @Transient //Campo que não será persistido, apenas exibido na interface

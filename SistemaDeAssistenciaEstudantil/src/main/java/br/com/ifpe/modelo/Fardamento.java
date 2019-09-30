@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_FARDAMENTO")
@@ -23,21 +26,27 @@ public class Fardamento implements Serializable {
     @Column(name="id_fardamento")
     private Long idFardamento;
     
-    @Column(name="quantidade_entregue", nullable = false, length = 2)
+    @NotBlank
+    @Size(max=2)
+    @Column(name="quantidade_entregue")
+//    @Column(name="quantidade_entregue", nullable = false, length = 2)
     private int quantidadeEntregue;
     
     
-    //Cardinalidade Aluno 1 : N Fardamento 
+    //Cardinalidade Aluno 1 : N Fardamento
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_aluno", referencedColumnName = "id_aluno")
     protected Aluno aluno;
     
-    //Cardinalidade Situacao 1 : N Fardamento 
+    //Cardinalidade Situacao 1 : N Fardamento
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_situacao", referencedColumnName = "id_situacao")
     protected Situacao situacao;
     
     //Cardinalidade Tamanho 1 : N Fardamento 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_tamanho", referencedColumnName = "id_tamanho") 
     protected Tamanho tamanho;

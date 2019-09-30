@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_VOLUME")
@@ -29,7 +31,10 @@ public class Volume implements Serializable {
     @Column(name="id_volume")
     private Long idVolume;
     
-    @Column(name="descricao_volume", nullable = false, length = 12)
+    @NotBlank
+    @Size(max=12)
+    @Column(name="descricao_volume")
+//    @Column(name="descricao_volume", nullable = false, length = 12)
     private String descricaoVolume;
     
     

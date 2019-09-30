@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_EMPRESTIMO")
@@ -25,25 +28,34 @@ public class Emprestimo implements Serializable {
     @Column(name="id_emprestimo")
     private Long idEmprestimo;
     
+    @NotBlank
+    @Column(name="data_entrega")
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name="data_entrega", nullable = true)
+//    @Column(name="data_entrega", nullable = true)
     private Date dataEntrega;
     
+    @NotBlank
+    @Column(name="data_devolucao")
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name="data_devolucao", nullable = true)
+//    @Column(name="data_devolucao", nullable = true)
     private Date dataDevolucao;
     
-    @Column(name="status", nullable = false, length = 20)
+    @NotBlank
+    @Size(max=20)
+    @Column(name="status")
+//    @Column(name="status", nullable = false, length = 20)
     private String status;
     
     
     //Cardinalidade Usuario 1 : N Emprestimo
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") 
     protected Usuario usuario;
     
     //Cardinalidade Livro 1 : N Emprestimo
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)    
     @JoinColumn(name = "id_livro", referencedColumnName = "id_livro") 
     protected Livro livro;
 

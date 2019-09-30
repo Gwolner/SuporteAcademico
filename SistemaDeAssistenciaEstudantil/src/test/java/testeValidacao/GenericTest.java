@@ -1,4 +1,4 @@
-package br.com.ifpe.teste;
+package testeValidacao;
 
 import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Bolsa;
@@ -81,14 +81,14 @@ public class GenericTest {
         return c.getTime();
     }
     
-    protected Volume criarVolume(){
+    protected Volume criarVolumeInvalido(){
         Volume volume = new Volume();
-        volume.setDescricaoVolume("Vol. 4");
+        volume.setDescricaoVolume(" "); 
         
         return volume;
     }
     
-    protected Aluno criarAluno(){        
+    protected Aluno criarAlunoInvalido(){        
         Aluno aluno = new Aluno();
         aluno.setNomeUsuario("Thomas Edson");
         aluno.setCpf(98920073015L);
@@ -104,62 +104,66 @@ public class GenericTest {
         return aluno;
     }
     
-    protected Bolsa criarBolsa(){
+    protected Bolsa criarBolsaInvalida(){
         Bolsa bolsa = new Bolsa();
-        bolsa.setNomeBolsa("PIBIC");
+        bolsa.setNomeBolsa(
+                "PIBICpesquisaintegradoraornamentalsuperioetecnico"
+        ); //Nome de bolsa invalido
         bolsa.setTipo("Pesquisa");
-        bolsa.setValor(0.00);
+        bolsa.setValor(1000000.00); //Valor de bolsa invalido
         
         return bolsa;
     }
     
-    protected Emprestimo criarEmprestimo(){        
+    protected Emprestimo criarEmprestimoInvalido(){        
         Emprestimo emprestimo = new Emprestimo();
-        String statusEmprestimo = "Teste";
+        String statusEmprestimo = ""; //Status invalido
         emprestimo.setStatus(statusEmprestimo);
         
         return emprestimo;
     }
     
-    protected Fardamento criarFardamento(){
+    protected Fardamento criarFardamentoInvalido(){
         Fardamento fardamento = new Fardamento();
-        fardamento.setQuantidadeEntregue(1);
+        fardamento.setQuantidadeEntregue(10); //Quantidade invalida
         return fardamento;
     }
     
-    protected Livro criarLivro(){
+    protected Livro criarLivroInvalido(){
         Livro livro = new Livro();
-        livro.setTitulo("Java: Como Programar");
-        livro.setAutor("Harvey Deitel");
-        livro.setMateria("LPOO");
-        livro.setIsbn(666123123L);
+        livro.setTitulo(""); //Titulo invalido
+        livro.setAutor(""); //Autor invalido
+        livro.setMateria(""); //Materia invalido
+        livro.setIsbn(666123123L); //Isbn invalido
         livro.setQuantidade(10);
         
         return livro;
     }
     
-    protected Professor criarProfessor(){
+    protected Professor criarProfessorInvalido(){
         Professor professor = new Professor();
-        professor.setNomeUsuario("Murilo Murilison");
-        professor.setCpf(82273258070L);
-        professor.setRg(438713588);
-        professor.setDepartamento("DADT");
+        professor.setNomeUsuario("");
+        professor.setCpf(11122211100L); //Cpf invalido
+        professor.setRg(438713588); 
+        professor.setDepartamento("AS"); //Depart. invalido
         professor.setRamal(2530L);
-        professor.setSiape(3064587);
+        professor.setSiape(306564587); //Siape invalido
         
         return professor;
     }
     
-    protected Situacao criarSituacao(){        
+    protected Situacao criarSituacaoInvalida(){        
         Situacao situacao = new Situacao();       
-        situacao.setDescricaoSituacao("Entr. c/ atraso");
+        situacao.setDescricaoSituacao(
+                "Entrrega com atraso pelo DAE"
+        ); //Descricao invalida
         
         return situacao;
     }
     
-    protected Tamanho criarTamanho(){
+    protected Tamanho criarTamanhoInvalido(){
         Tamanho tamanho = new Tamanho();      
-        tamanho.setDescricaoTamanho("GG");
+        tamanho.setDescricaoTamanho("XGG"); //Tamanho invalida
         
         return tamanho;
     }

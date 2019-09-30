@@ -20,6 +20,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -41,17 +46,28 @@ public class Usuario implements Serializable { //Classe Pai na herança
     @Column(name = "id_usuario")
     private Long idUsuario;
     
-    @Column(name = "nome_usuario", nullable = false, length = 100)
+    @NotBlank
+    @Size(max=100)
+    @Column(name="nome_usuario")
+//    @Column(name = "nome_usuario", nullable = false, length = 100)
     private String nomeUsuario;
     
-    @Column(name = "cpf", nullable = false, length = 15)
+    @NotBlank
+    @CPF
+    @Column(name="cpf")
+//    @Column(name = "cpf", nullable = false, length = 15)
     private Long cpf;
     
-    @Column(name = "rg", nullable = false, length = 10)
+    @NotBlank
+    @Size(max=10)
+    @Column(name="rg")
+//    @Column(name = "rg", nullable = false, length = 10)
     private int rg;
     
+    @Past
+    @Column(name="data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name = "data_nascimento", nullable = true)
+//    @Column(name = "data_nascimento", nullable = true)
     private Date dataNascimento;
 
     //Cardinalidade Aluno 1 : N Emprestimo
