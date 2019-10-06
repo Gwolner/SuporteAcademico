@@ -1,6 +1,9 @@
 package br.com.ifpe.teste;
 
+import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Fardamento;
+import br.com.ifpe.modelo.Situacao;
+import br.com.ifpe.modelo.Tamanho;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.CacheRetrieveMode;
@@ -26,6 +29,9 @@ public class FardamentoCrudTest extends GenericTest {
         
         Fardamento fardamento = em.find(Fardamento.class, id);
         fardamento.setQuantidadeEntregue(novaQuantidade);
+        fardamento.setAluno(criarAluno());
+        fardamento.setSituacao(criarSituacao());
+        fardamento.setTamanho(criarTamanho());
         
         
         em.flush();
@@ -42,10 +48,13 @@ public class FardamentoCrudTest extends GenericTest {
     @Test
     public void atualizarFardamentoMerge() {
         int novaQuantidade = 2;
-        Long id = 5L;
+        Long id = 3L;
         
         Fardamento fardamento = em.find(Fardamento.class, id);
         fardamento.setQuantidadeEntregue(novaQuantidade);
+        fardamento.setAluno(criarAluno());
+        fardamento.setSituacao(criarSituacao());
+        fardamento.setTamanho(criarTamanho());
 
         em.clear();
         em.merge(fardamento);

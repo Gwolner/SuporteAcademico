@@ -32,9 +32,8 @@ public class Situacao implements Serializable {
     private Long idSituacao;
     
     @NotBlank
-    @Size(max=15)
+    //@Size(max=15)
     @Column(name="descricao_situacao")
-//    @Column(name="descricao_situacao", nullable = false, length = 15)
     private String descricaoSituacao;
     
     

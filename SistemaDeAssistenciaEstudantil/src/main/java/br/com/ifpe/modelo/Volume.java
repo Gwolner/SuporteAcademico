@@ -32,9 +32,7 @@ public class Volume implements Serializable {
     private Long idVolume;
     
     @NotBlank
-    @Size(max=12)
     @Column(name="descricao_volume")
-//    @Column(name="descricao_volume", nullable = false, length = 12)
     private String descricaoVolume;
     
     

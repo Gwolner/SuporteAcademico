@@ -1,4 +1,4 @@
-package br.com.ifpe.teste;
+package br.com.ifpe.jpql;
 
 import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Bolsa;
@@ -97,13 +97,13 @@ public class GenericTest {
         aluno.setResponsavel("Abilbo");
         aluno.setContatoResponsavel(911112222L);
         aluno.setTurno("Manha");
-        aluno.setMatricula("0915POOP");
-//        aluno.setCpf(90685302083L);
+        aluno.setMatricula("20172y6-rc0000");
+        aluno.setCpf(90685302083L);
         aluno.setEmail("tedson@bol.com");
         
         return aluno;
     }
-        
+    
     protected Bolsa criarBolsa(){
         Bolsa bolsa = new Bolsa();
         bolsa.setNomeBolsa("PIBIC");
@@ -124,9 +124,6 @@ public class GenericTest {
     protected Fardamento criarFardamento(){
         Fardamento fardamento = new Fardamento();
         fardamento.setQuantidadeEntregue(1);
-        fardamento.setAluno(criarAluno());
-        fardamento.setSituacao(criarSituacao());
-        fardamento.setTamanho(criarTamanho());
         return fardamento;
     }
     
@@ -135,9 +132,8 @@ public class GenericTest {
         livro.setTitulo("Java: Como Programar");
         livro.setAutor("Harvey Deitel");
         livro.setMateria("LPOO");
-        livro.setIsbn(9781666123123L);
+        livro.setIsbn(666123123L);
         livro.setQuantidade(10);
-        livro.setVolume(criarVolume());
         
         return livro;
     }

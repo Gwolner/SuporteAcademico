@@ -26,7 +26,7 @@ public class AlunoCrudTest extends GenericTest {
         String novoCurso = "TADS";
         Long novoContato = 81911112222L;        
         String novoTurno = "Noite";
-        String novaMatricula = "20172y6-rc2017";
+        String novaMatricula = "2017OPOP";
         Long novoCpf = 57425177005L;
         String novoEmail = "gwolner27@gmail.com";
         Long id = 1L;
@@ -63,7 +63,7 @@ public class AlunoCrudTest extends GenericTest {
         String novoCurso = "TADS";
         Long novoContato = 81911112222L;        
         String novoTurno = "Noite";
-        String novaMatricula = "20172y6-rc2019";
+        String novaMatricula = "2017OPOP";
         Long novoCpf = 88334221002L;
         String novoEmail = "alfredinho@gmail.com";
         Long id = 5L;       

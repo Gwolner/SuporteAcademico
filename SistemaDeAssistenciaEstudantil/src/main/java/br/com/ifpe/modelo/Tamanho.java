@@ -12,13 +12,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="TB_TAMANHO")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Tamanho.PorLetra",
+                    query = "SELECT t FROM Tamanho t WHERE t.descricaoTamanho LIKE :param ORDER BY t.descricaoTamanho"
+            )
+        }
+)
 @Access(AccessType.FIELD)
 public class Tamanho implements Serializable {
     
@@ -32,9 +42,8 @@ public class Tamanho implements Serializable {
     private Long idTamanho;
     
     @NotBlank
-    @Size(max=2)
     @Column(name="descricao_tamanho")
-//    @Column(name="descricao_tamanho", nullable = false, length = 2)
+    @Pattern(regexp="[A-Z]{0,2}", message="{br.com.ifpe.modelo.Tamanho.descricaoTamanho}")
     private String descricaoTamanho;
     
     

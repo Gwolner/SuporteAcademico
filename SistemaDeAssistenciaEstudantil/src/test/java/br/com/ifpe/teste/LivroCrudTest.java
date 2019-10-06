@@ -26,7 +26,7 @@ public class LivroCrudTest extends GenericTest{
         String novoTitulo = "C++ Como programar";
         String novoAutor = "Paul Deitel";
         int novaQuantidade = 45;
-        Long novoIsbn = 254145214L;   
+        Long novoIsbn = 9781254145214L;   
         
         Long id = 6L;
         Livro livro = em.find(Livro.class, id);

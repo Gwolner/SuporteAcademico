@@ -1,4 +1,4 @@
-package testeValidacao;
+package br.com.ifpe.validacao;
 
 import java.io.InputStream;
 import java.sql.Connection;

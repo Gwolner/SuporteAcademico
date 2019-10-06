@@ -1,4 +1,4 @@
-package testeValidacao;
+package br.com.ifpe.validacao;
 
 import br.com.ifpe.modelo.Aluno;
 import br.com.ifpe.modelo.Bolsa;

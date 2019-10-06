@@ -47,27 +47,22 @@ public class Usuario implements Serializable { //Classe Pai na herança
     private Long idUsuario;
     
     @NotBlank
-    @Size(max=100)
+    //@Size(max=100)
     @Column(name="nome_usuario")
-//    @Column(name = "nome_usuario", nullable = false, length = 100)
     private String nomeUsuario;
     
-    @NotBlank
-    @CPF
+    //@NotNull
+    //@CPF
     @Column(name="cpf")
-//    @Column(name = "cpf", nullable = false, length = 15)
     private Long cpf;
     
-    @NotBlank
-    @Size(max=10)
+    @NotNull
     @Column(name="rg")
-//    @Column(name = "rg", nullable = false, length = 10)
     private int rg;
     
-    @Past
+//    @Past
     @Column(name="data_nascimento")
     @Temporal(javax.persistence.TemporalType.DATE)
-//    @Column(name = "data_nascimento", nullable = true)
     private Date dataNascimento;
 
     //Cardinalidade Aluno 1 : N Emprestimo

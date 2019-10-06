@@ -19,22 +19,16 @@ import org.hibernate.validator.constraints.NotBlank;
 )
 public class Professor extends Usuario implements Serializable {
     
-    @NotBlank
-    @Size(max=8)
+    @NotNull
     @Column(name="siape")
-//    @Column(name="siape", nullable = false, length = 8)
     private int siape;
     
     @NotBlank
-    @Size(min = 3, max=100)
+//    @Size(min = 3, max=100)
     @Column(name="departamento")
-//    @Column(name="departamento", nullable = false, length = 100)
     private String departamento;    
     
-    @NotBlank
-    @Size(max=15)
     @Column(name="ramal")
-//    @Column(name="ramal", nullable = false, length = 15)
     private Long ramal;
 
     

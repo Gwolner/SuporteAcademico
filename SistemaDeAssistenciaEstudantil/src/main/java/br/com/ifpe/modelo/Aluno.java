@@ -34,39 +34,28 @@ public class Aluno extends Usuario implements Serializable{
     }
     
     @NotBlank
-    @Size(max=150)
     @Column(name="curso")
-//    @Column(name="curso", nullable = false, length = 150)
     private String curso;
     
     @NotBlank
-    @Size(max=10)
     @Column(name="turno")
-//    @Column(name="turno", nullable = false, length = 10)
     private String turno;
     
     @NotBlank
-    @Size(max=15)
     @Column(name="matricula")
-//    @Column(name="matricula", nullable = false, length = 15)
+    @ValidaMatricula
     private String matricula;
     
     @NotBlank
-    @Size(max=100)
     @Column(name="responsavel")
-//    @Column(name="responsavel", nullable = false, length = 100)
     private String responsavel;
     
-    @NotBlank
-    @Size(max=11)
+    @NotNull
     @Column(name="contato_responsavel")
-//    @Column(name="contato_responsavel", nullable = false, length = 11)
     private Long contatoResponsavel;
     
     @NotBlank
-    @Size(max=70)
     @Column(name="email")
-//    @Column(name="email", nullable = false, length = 70)
     private String email;
     
     @Transient //Campo que não será persistido, apenas exibido na interface

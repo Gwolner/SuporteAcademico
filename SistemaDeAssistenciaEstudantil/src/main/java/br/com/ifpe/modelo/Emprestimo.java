@@ -19,47 +19,37 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="TB_EMPRESTIMO")
+@Table(name = "TB_EMPRESTIMO")
 @Access(AccessType.FIELD)
 public class Emprestimo implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_emprestimo")
+    @Column(name = "id_emprestimo")
     private Long idEmprestimo;
-    
-    @NotBlank
-    @Column(name="data_entrega")
+
+    @Column(name = "data_entrega")
     @Temporal(javax.persistence.TemporalType.DATE)
-//    @Column(name="data_entrega", nullable = true)
     private Date dataEntrega;
-    
-    @NotBlank
-    @Column(name="data_devolucao")
+
+    @Column(name = "data_devolucao")
     @Temporal(javax.persistence.TemporalType.DATE)
-//    @Column(name="data_devolucao", nullable = true)
     private Date dataDevolucao;
-    
+
     @NotBlank
-    @Size(max=20)
-    @Column(name="status")
-//    @Column(name="status", nullable = false, length = 20)
+    @Column(name = "status")
     private String status;
-    
-    
+
     //Cardinalidade Usuario 1 : N Emprestimo
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario") 
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
     protected Usuario usuario;
-    
+
     //Cardinalidade Livro 1 : N Emprestimo
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)    
-    @JoinColumn(name = "id_livro", referencedColumnName = "id_livro") 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_livro", referencedColumnName = "id_livro")
     protected Livro livro;
 
-    
     public Long getIdEmprestimo() {
         return this.idEmprestimo;
     }
@@ -107,29 +97,28 @@ public class Emprestimo implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEmprestimo != null ? idEmprestimo.hashCode():0);
+        hash += (idEmprestimo != null ? idEmprestimo.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (!(o instanceof Emprestimo)) {
             return false; //Se não for a instância desejada, retorna false;
-        }else{ 
+        } else {
             Emprestimo other = (Emprestimo) o;
             return !((this.idEmprestimo == null && other.idEmprestimo != null)
-                    ||(this.idEmprestimo != null && 
-                    !this.idEmprestimo.equals(other.idEmprestimo))
-            );
-        /* 
+                    || (this.idEmprestimo != null
+                    && !this.idEmprestimo.equals(other.idEmprestimo)));
+            /* 
          * Se a sentença for verdadeira, retorna false. 
          * Se for falsa, retorna true.        
-         */
+             */
         }
     }
-    
+
 }

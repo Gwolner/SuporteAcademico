@@ -109,7 +109,7 @@
     <TB_ALUNO id_aluno="1" 
               curso="Eletronica" 
               turno="Manha" 
-              matricula="20172y5-rc0101" 
+              matricula="1234ABCD" 
               responsavel="Carmela" 
               contato_responsavel="32512742" 
               email="gwdm@hotmail.com"/>
@@ -117,7 +117,7 @@
     <TB_ALUNO id_aluno="2" 
               curso="Edificacoes" 
               turno="Manha" 
-              matricula="20172y5-rc0151" 
+              matricula="4321OPLK" 
               responsavel="Elionai" 
               contato_responsavel="32571835" 
               email="creed.play@gmail.com"/>    
@@ -125,7 +125,7 @@
     <TB_ALUNO id_aluno="3" 
               curso="Eletronica" 
               turno="Manha" 
-              matricula="20172y5-rc0254" 
+              matricula="9999OOOO" 
               responsavel="Matilde" 
               contato_responsavel="32112719" 
               email="pitarex@gmail.com"/>
@@ -133,7 +133,7 @@
     <TB_ALUNO id_aluno="4" 
               curso="Edificacoes" 
               turno="Manha" 
-              matricula="20172y5-rc0952" 
+              matricula="0987OPOP" 
               responsavel="Jose" 
               contato_responsavel="995487851" 
               email="ifpe.edif@gmail.com"/>    
@@ -141,7 +141,7 @@
     <TB_ALUNO id_aluno="5" 
               curso="Quimica" 
               turno="Manha" 
-              matricula="20182y5-rc9718" 
+              matricula="7777KSKS" 
               responsavel="18+" 
               contato_responsavel="958412575" 
               email="minhaquimica@gmail.com"/>
@@ -149,7 +149,7 @@
     <TB_ALUNO id_aluno="6" 
               curso="Quimica" 
               turno="Manha" 
-              matricula="20182y5-rc9727" 
+              matricula="3434OIUY" 
               responsavel="18+" 
               contato_responsavel="955432175" 
               email="ops.2016@gmail.com"/>    
@@ -157,7 +157,7 @@
     <TB_ALUNO id_aluno="7" 
               curso="Mecanica" 
               turno="Manha" 
-              matricula="20182y7-rc4297" 
+              matricula="8765TGHJ" 
               responsavel="18+" 
               contato_responsavel="955619735" 
               email="foster@gmail.com"/>
@@ -165,7 +165,7 @@
     <TB_ALUNO id_aluno="8" 
               curso="Mecanica" 
               turno="Manha" 
-              matricula="20182y7-rc4845" 
+              matricula="6543IKJF" 
               responsavel="18+" 
               contato_responsavel="928487851" 
               email="uxe_xp2011@gmail.com"/>    
@@ -173,7 +173,7 @@
     <TB_ALUNO id_aluno="9" 
               curso="Edificacoes" 
               turno="Manha" 
-              matricula="20191y2-rc3797" 
+              matricula="6555JJJJ" 
               responsavel="Agatha" 
               contato_responsavel="912238735" 
               email="flordojardim@bol.com"/>
@@ -181,7 +181,7 @@
     <TB_ALUNO id_aluno="10" 
               curso="Eletronica" 
               turno="Manha" 
-              matricula="20191y2-rc3753" 
+              matricula="2020PLKJ" 
               responsavel="18+" 
               contato_responsavel="927328735" 
               email="construcoes.marconde@uol.com"/>

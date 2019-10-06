@@ -33,19 +33,15 @@ public class Bolsa implements Serializable {
     @NotBlank
     @Size(max=45)
     @Column(name="nome_bolsa")
-//    @Column(name="nome_bolsa", nullable = false, length = 45)
     private String nomeBolsa;
     
     @NotBlank
     @Size(max=45)
     @Column(name="tipo")
-//    @Column(name="tipo", nullable = false, length = 45)
     private String tipo;
     
-    @NotBlank
-    @Size(max=8)
+    @NotNull
     @Column(name="valor")
-//    @Column(name="valor", nullable = false, length = 8)
     private Double valor;
     
     
