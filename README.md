@@ -1,4 +1,4 @@
-# Projeto DesCorp-SAE
+# Projeto DesCorpSAE
 
 Projeto desenvolvido para a disciplina de Desenvolvimento de Software Corporativo (DesCorp) do curso de Análise e Desenvolvimento de Sistemas do IFPE.
 
