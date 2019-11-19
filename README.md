@@ -12,7 +12,7 @@ Cada intrega visa explorar aspectos do Java EE como JPA, JPQL e EJB. Além disso
 Consiste em um Sistema de Assistencia Estudantil (SAE) que permite o aluno obter seu fardamento semestral, associar-se a uma Bolsa de auxilio aos estudos (monitoria, estágio, pesquisa ou apoio à baixa renda) além de obter emprestimos de livros didáticos para estudo.
 O SAE tambem permite que professores obtenham o emprestimo de livros para que possam planejar suas aulas, tendo eles como referencia.
 
-## Classes do projeto
+### Classes do projeto
 
 
 
