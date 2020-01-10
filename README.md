@@ -4,7 +4,7 @@ Projeto desenvolvido para a disciplina de Desenvolvimento de Software Corporativ
 
 ## Proposta do projeto
 
-Foi solicitado pelo professor Marcos André a elaboração de um projeto de sistema em Java que para ser avaliado durante quatro entregas.
+Foi solicitado pelo professor [Marcos André](https://github.com/marcosifpe) a elaboração de um projeto de sistema em Java que será utilizado para ser avaliado durante quatro entregas.
 Cada intrega visa explorar aspectos do Java EE como JPA, JPQL e EJB. Além disso, foram utilizados EclipseLink como suporte ao mapeamento ORM do JPA e o Hibernate para ________
 
 ## Sobre o projeto
