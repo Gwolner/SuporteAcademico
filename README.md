@@ -1,21 +1,16 @@
-# Projeto DesCorpSAE
+# Sistema de Suporte Acadêmico - SSA
 
-Projeto desenvolvido para a disciplina de Desenvolvimento de Software Corporativo (DesCorp) do curso de Análise e Desenvolvimento de Sistemas do IFPE.
+Projeto avaliativo desenvolvido para a disciplina de Desenvolvimento de Software Corporativo (DesCorp) do curso de Análise e Desenvolvimento de Sistemas.
 
-## Proposta do projeto
+## Descrição da avaliação
 
-Foi solicitado pelo professor [Marcos André](https://github.com/marcosifpe) a elaboração de um projeto de sistema em Java que será utilizado para ser avaliado durante quatro entregas.
-Cada intrega visa explorar aspectos do Java EE como JPA, JPQL e EJB. Além disso, foram utilizados EclipseLink como suporte ao mapeamento ORM do JPA e o Hibernate para ________
+Foi solicitado pelo professor [Marcos André](https://github.com/marcosifpe) a elaboração de um projeto de sistema em Java EE que será avaliado durante quatro entregas.
+Cada entrega visa explorar alguns aspectos do Java EE como JPA, JPQL e EJB. Além disso, foram utilizados a [dependência EclipseLink](https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink/2.5.0), como suporte ao mapeamento ORM do JPA, e o framework [PrimeFAces](https://www.primefaces.org/showcase/), para a criação de páginas em JSF.
 
-## Sobre o projeto
+## Projeto proposto
 
-Consiste em um Sistema de Assistencia Estudantil (SAE) que permite o aluno obter seu fardamento semestral, associar-se a uma Bolsa de auxilio aos estudos (monitoria, estágio, pesquisa ou apoio à baixa renda) além de obter emprestimos de livros didáticos para estudo.
-O SAE tambem permite que professores obtenham o emprestimo de livros para que possam planejar suas aulas, tendo eles como referencia.
-
-### Classes do projeto
-
-
-
+Consiste em um Sistema de Suporte Acadêmico (SSA) que permite o aluno obter seu fardamento semestral, associar-se a uma Bolsa de auxilio aos estudos (monitoria, estágio, pesquisa ou apoio à baixa renda) além de obter emprestimos de livros didáticos para estudo.
+O SSA tambem permite que professores obtenham o emprestimo de livros para que possam planejar suas aulas, tendo eles como referencia.
 
 ## Primeira entrega
 
