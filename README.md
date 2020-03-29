@@ -57,6 +57,6 @@ A configuração do GlassFish encontra-se neste [tutorial]() de 9 páginas.
 
 Adição do framework Primefaces ao JSF do projeto. Atribuindo, desta forma, o design do front do sistema.
 
-## imagens
+## Imagens
 
-
+<img src="img/index.PNG" width="1366" height="626" align="center">
