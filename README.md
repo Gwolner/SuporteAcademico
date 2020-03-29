@@ -49,10 +49,14 @@ Além das funcionalidades ja mencionadas, agora apresenta JPQL para realizar vá
 
 ## Terceira entrega
 
-Adaptação da entrega anterior para uso do EJB.
+Adaptação da entrega anterior para uso do EJB. Usado o servidor GlassFish para tratar das persistências e gerir as regras de negócios.
 
+A configuração do GlassFish encontra-se neste [tutorial]() de 9 páginas.
 
+## Quarta entrega.
 
+Adição do framework Primefaces ao JSF do projeto. Atribuindo, desta forma, o design do front do sistema.
 
+## imagens
 
 
