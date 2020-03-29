@@ -59,4 +59,14 @@ Adição do framework Primefaces ao JSF do projeto. Atribuindo, desta forma, o d
 
 ## Imagens
 
-<img src="img/index.PNG" width="1366" height="626" align="center">
+<img src="img/index.PNG" height="675" width="1200" align="center">
+<img src="img/livro.PNG" height="380" width="630" align="center">
+<img src="img/professor2.PNG" height="380" width="630" align="center">
+<img src="img/volume.PNG" height="380" width="630" align="center">
+<img src="img/fardamento.PNG" height="380" width="630" align="center">
+<img src="img/emprestimo.PNG" height="380" width="630" align="center">
+<img src="img/editar.PNG" height="380" width="630" align="center">
+<img src="img/alunos.PNG" height="380" width="630" align="center">
+
+
+
